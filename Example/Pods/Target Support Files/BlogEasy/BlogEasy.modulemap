@@ -1,0 +1,6 @@
+framework module BlogEasy {
+  umbrella header "BlogEasy-umbrella.h"
+
+  export *
+  module * { export * }
+}

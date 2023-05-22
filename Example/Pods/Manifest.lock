@@ -1,0 +1,16 @@
+PODS:
+  - BlogEasy (0.1.0)
+
+DEPENDENCIES:
+  - BlogEasy (from `../`)
+
+EXTERNAL SOURCES:
+  BlogEasy:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BlogEasy: 8996dd7a9e34f826d82fad87114df640836a7988
+
+PODFILE CHECKSUM: c117a28c63c289215df76b0a341890fa496428be
+
+COCOAPODS: 1.12.1

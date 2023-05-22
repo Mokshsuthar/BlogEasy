@@ -1,0 +1,22 @@
+{
+  "name": "BlogEasy",
+  "version": "0.1.0",
+  "summary": "A short description of BlogEasy.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Moksh/BlogEasy",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Moksh": "suthermukesh@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Moksh/BlogEasy.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "BlogEasy/Classes/**/*"
+}
