@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let swiftUIView =  DemoView() // swiftUIView is View
+        let childView = UIHostingController(rootView: swiftUIView)
+        addChildViewController(childView)
+        childView.view.frame = view.bounds
+        
+        childView.view.backgroundColor = .clear
+        view.addSubview(childView.view)
+        childView.didMove(toParent: self)
+        childView.view.backgroundColor = UIColor.black
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
