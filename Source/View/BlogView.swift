@@ -8,6 +8,16 @@
 import SwiftUI
 
 public struct BlogView: View {
+    //Blogs backgroud color
+    var backgroundColor : Color = .systemBackgroudColor
+    
+    var fontsizeScaler : CGFloat = 10
+    
+    var fontName : String?
+    
+    
+    
+    
     var title : String
     var subtitle : String
     var coverImage : UIImage?
@@ -28,6 +38,22 @@ public struct BlogView: View {
                     Image(uiImage: img)
                         .resizable().aspectRatio(contentMode: .fill)
                         .fullWidth(height: UIDevice.current.isPad ? 300 : BlogView.screenWidth)
+                        .overlay(VStack{
+                           LinearGradient(colors: [backgroundColor,backgroundColor.opacity(0)], startPoint: .top, endPoint: .bottom)
+                                .fullWidth(height: BlogView.notchHeight)
+                            
+                            Spacer()
+                            
+                            VStack{
+                               Text(title)
+                                    .setFont(name: fontName, size: 30)
+                            }
+                            .fullWidth(height: 80)
+                            .background(LinearGradient(colors: [backgroundColor.opacity(0),backgroundColor], startPoint: .top, endPoint: .bottom))
+                            
+                           
+                                
+                        })
                         .clipped()
                 }
                 
@@ -84,6 +110,4 @@ public struct BlogView: View {
         }
         .ignoreSafeArea_C()
     }
-    
-    
 }

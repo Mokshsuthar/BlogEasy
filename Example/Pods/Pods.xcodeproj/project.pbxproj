@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		02F47CC235C9EE4782DD107CB3E8A342 /* Pods-BlogEasy_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4EDF56479BE7125BE6D4FF48BA1D16 /* Pods-BlogEasy_Tests-dummy.m */; };
 		3E42CAE1D65B435C7CD56B806A810E14 /* BlogEasy-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E0E3ED3B5648718F7153FF130E1DFF /* BlogEasy-dummy.m */; };
+		66E99CDF2A1BC95F0079A91F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E99CDE2A1BC95F0079A91F /* Colors.swift */; };
 		812D442B6AA28FA87FA77B869CE7C602 /* BlogEasy-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F330CC6240AC2804F78CEA020653D65 /* BlogEasy-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8503C5B8E20A9054D06760112DA4505C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		96062889CEA3EE0CAE34A7088FDADD67 /* Pods-BlogEasy_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE29CC6FD308A339C10A15F17E04B23 /* Pods-BlogEasy_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,6 +53,7 @@
 		522183388636B29D776CBBFD009A179E /* BlogEasy-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "BlogEasy-Info.plist"; sourceTree = "<group>"; };
 		575B0283E72B942329801AB040C76CE7 /* Pods_BlogEasy_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlogEasy_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		645440359C86B52B35F3481E352BFE02 /* Pods-BlogEasy_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BlogEasy_Example.release.xcconfig"; sourceTree = "<group>"; };
+		66E99CDE2A1BC95F0079A91F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		6749FBD6973F4CE48727482B5801FE91 /* Pods-BlogEasy_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BlogEasy_Example-Info.plist"; sourceTree = "<group>"; };
 		6C4EDF56479BE7125BE6D4FF48BA1D16 /* Pods-BlogEasy_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BlogEasy_Tests-dummy.m"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -230,6 +232,7 @@
 				9CBF61C62A1B8F5D00DE4F6D /* ViewHalpers.swift */,
 				9CBF61CB2A1B967F00DE4F6D /* RoundedClipShape.swift */,
 				9CBF61CD2A1B970500DE4F6D /* ThreadHalper.swift */,
+				66E99CDE2A1BC95F0079A91F /* Colors.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CBF61C12A1B74A300DE4F6D /* BlogView.swift in Sources */,
+				66E99CDF2A1BC95F0079A91F /* Colors.swift in Sources */,
 				9CBF61B52A1B6B6D00DE4F6D /* Structs.swift in Sources */,
 				9CBF61CA2A1B91C300DE4F6D /* Helper.swift in Sources */,
 				9CBF61C72A1B8F5D00DE4F6D /* ViewHalpers.swift in Sources */,

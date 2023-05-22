@@ -142,10 +142,31 @@ extension View
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
     
+    //scroll position Detection
+    func getScrollPosition(key : String,handler : @escaping (CGFloat) -> Void) -> some View {
+        return self.background( GeometryReader { Color.clear.preference(key: ViewOffsetKey.self, value: -$0.frame(in: .named(key)).origin.y) }).onPreferenceChange(ViewOffsetKey.self) { handler($0) }
+    }
+    
+    
+
+    func setFont(name : String?,size : CGFloat) -> some View{
+        if let name = name {
+            return self.font(Font.custom(name, size: size))
+        } else {
+            return self.font(.system(size: size))
+        }
+    }
+    
     
 }
 
-
+struct ViewOffsetKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue = CGFloat.zero
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
+    }
+}
 
 
 extension UIDevice {
