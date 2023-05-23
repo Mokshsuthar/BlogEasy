@@ -67,37 +67,13 @@ public struct BlogView: View {
                    
                     ForEach(content,id: \.id) { content in
                         switch content.ContentType {
-                        case .title(let value) :
-                            Text(value)
-                                .setFont(name: fontName, size: 28 + fontsizeScaler,weight: .heavy)
-                                .multilineTextAlignment(.leading)
-                                .fullWidth(alignment: .leading)
+                        case .title(_),.headline(_),.subheadline(_),.caption(_),.caption2(_) :
+                            TextContent(type: content.ContentType)
                             
-                        case .headline(let value) :
-                            Text(value)
-                                .setFont(name: fontName, size: 21 + fontsizeScaler,weight: .bold)
-                                .multilineTextAlignment(.leading)
-                                .fullWidth(alignment: .leading)
-                        case .subheadline(let value) :
-                            Text(value)
-                                .setFont(name: fontName, size: 18 + fontsizeScaler,weight: .bold)
-                                .multilineTextAlignment(.leading)
-                                .fullWidth(alignment: .leading)
-                        case .caption(let value):
-                            Text(value)
-                                .setFont(name: fontName, size: 16 + fontsizeScaler,weight: .light)
-                                .multilineTextAlignment(.leading)
-                                .fullWidth(alignment: .leading)
-                        case .caption2(let value):
-                            Text(value)
-                                .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light)
-                                .multilineTextAlignment(.leading)
-                                .fullWidth(alignment: .leading)
-                        case .image(let img):
-                            if let img = img{
-                                Image(uiImage: img)
-                            }
-                           
+                        case .image(let provider,let source):
+                            ImageView(provider: provider, source: source)
+                            
+                            
                         case .transparentImage(let img):
                             Image(uiImage: img)
                         case .bullet(let bulletImage,let value):

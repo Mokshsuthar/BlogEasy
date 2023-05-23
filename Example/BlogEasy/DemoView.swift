@@ -15,6 +15,7 @@ struct DemoView: View {
         ZStack{
             BlogView(coverImage: UIImage(named: "semple"), content: [
                 .init(ContentType: .title(value: "ChatGPT integration in Xcode: How to improve your Apps with AI")),
+                .init(ContentType: .image(image: .uiimage(image: UIImage(named: "download2")), source: imageSource(text: "dribble.com",url: "https://dribbble.com/mindinventory"))),
                 .init(ContentType: .caption(value: "The latest enfant terrible in the field of Artificial Intelligence is called ChatGPT and comes from OpenAI, a company founded a few years ago that is currently leading the way with products like the aforementioned ChatGPT or DALL-E."))
             ])
             
