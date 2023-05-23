@@ -65,26 +65,31 @@ extension BlogView{
             Text(value)
                 .setFont(name: fontName, size: 28 + fontsizeScaler,weight: .heavy)
                 .multilineTextAlignment(.leading)
+                .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
         case .headline(let value):
             Text(value)
                 .setFont(name: fontName, size: 21 + fontsizeScaler,weight: .bold)
                 .multilineTextAlignment(.leading)
+                .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
         case .subheadline(let value):
             Text(value)
                 .setFont(name: fontName, size: 18 + fontsizeScaler,weight: .bold)
                 .multilineTextAlignment(.leading)
+                .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
         case .caption(let value):
             Text(value)
                 .setFont(name: fontName, size: 16 + fontsizeScaler,weight: .light)
                 .multilineTextAlignment(.leading)
+                .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
         case .caption2(let value):
             Text(value)
                 .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light)
                 .multilineTextAlignment(.leading)
+                .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
         default:
             EmptyView()

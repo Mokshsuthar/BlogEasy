@@ -9,12 +9,20 @@ import SwiftUI
 
 
 public struct BlogView: View {
-    //Blogs backgroud color
+    //backgroud color
     var backgroundColor : Color = .systemBackgroudColor
     
+    //TO manage font by slider
     var fontsizeScaler : CGFloat = 1
     
+    //show and hide scrollview Indicator
+    var showScrollIndicator : Bool = true
+    
+    // horizontal padding of text content
     var paddingHorizontal : CGFloat = 16
+    
+    //spacing between lines in pragraph
+    var textLineSpacing : CGFloat = 2
     
     var coverHeight : CGFloat =  UIDevice.current.isPad ?  300 : UIScreen.main.bounds.width
     
@@ -57,7 +65,7 @@ public struct BlogView: View {
             }
             
             
-            ScrollView(.vertical) {
+            ScrollView(.vertical,showsIndicators: showScrollIndicator) {
             
                 C_lazyVstack(spacing: 16) {
                     

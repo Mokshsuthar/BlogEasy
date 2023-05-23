@@ -235,3 +235,38 @@ extension UIScreen {
         }
     }
 }
+
+
+extension String {
+    public enum TextBlogContents {
+        case title,headline,subheadline,caption,caption2
+    }
+    
+    public func toBlogContent(type : TextBlogContents) -> BlogCantent {
+        switch type {
+        case .title:
+            return .init(ContentType: .title(value: self))
+        case .headline:
+            return .init(ContentType: .headline(value: self))
+        case .subheadline:
+            return .init(ContentType: .subheadline(value: self))
+        case .caption:
+            return .init(ContentType: .caption(value: self))
+        case .caption2:
+            return .init(ContentType: .caption2(value: self))
+       
+        }
+    }
+}
+
+extension UIImage {
+    public func toBlogContent(source : imageSource? = nil) -> BlogCantent {
+        return.init(ContentType: .image(image: .uiimage(image: self),source: source))
+    }
+}
+
+extension URL {
+    public func toBlogContent_Image(source : imageSource? = nil) -> BlogCantent {
+        return.init(ContentType: .image(image: .url(url: self.absoluteString),source: source))
+    }
+}
