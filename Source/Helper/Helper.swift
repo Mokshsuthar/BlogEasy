@@ -104,16 +104,26 @@ extension View
     }
     
     // Returns a view that occupies the full available width with the specified alignment
-    func fullWidth(height : CGFloat = 0,alignment: Alignment = .center) -> some View {
-        return self.frame(
-            minWidth: 0,
-            idealWidth: 100,
-            maxWidth: .infinity,
-            minHeight: height,
-            idealHeight: height,
-            maxHeight: height,
-            alignment: alignment
-        )
+    func fullWidth(height : CGFloat? = nil,alignment: Alignment = .center) -> some View {
+        if let height = height{
+            return self.frame(
+                minWidth: 0,
+                idealWidth: 100,
+                maxWidth: .infinity,
+                minHeight: height,
+                idealHeight: height,
+                maxHeight: height,
+                alignment: alignment
+            )
+        } else {
+            return self.frame(
+                minWidth: 0,
+                idealWidth: 100,
+                maxWidth: .infinity,
+                alignment: alignment
+            )
+        }
+      
     }
     
     // Returns a view that occupies the full available height with the specified width and alignment
@@ -149,11 +159,11 @@ extension View
     
     
 
-    func setFont(name : String?,size : CGFloat) -> some View{
+    func setFont(name : String?,size : CGFloat,weight : Font.Weight) -> some View{
         if let name = name {
             return self.font(Font.custom(name, size: size))
         } else {
-            return self.font(.system(size: size))
+            return self.font(.system(size: size,weight: weight))
         }
     }
     

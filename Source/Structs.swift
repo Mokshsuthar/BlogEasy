@@ -22,7 +22,7 @@ public enum BlogCantentType {
     case subheadline(value : String)
     case caption(value :String)
     case caption2(value : String)
-    case image(image : UIImage)
+    case image(image : UIImage?)
     case bullet(bulletImage : UIImage,value : String)
     case TextBullet(BulletString : String, value :String)
     case divider

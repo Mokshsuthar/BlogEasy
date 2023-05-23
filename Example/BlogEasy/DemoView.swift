@@ -13,9 +13,9 @@ struct DemoView: View {
     
     var body: some View {
         ZStack{
-            BlogView(title: "Demo", subtitle: "Demo Subtitle",coverImage: UIImage(named: "semple") ,content: [
-                .init(ContentType: .headline(value: "पुस्‍तक, नाटक, फ़िल्‍म, चित्र आदि का शीर्षक")),
-                .init(ContentType: .subheadline(value: "subheadline"))
+            BlogView(coverImage: UIImage(named: "semple"), content: [
+                .init(ContentType: .title(value: "ChatGPT integration in Xcode: How to improve your Apps with AI")),
+                .init(ContentType: .caption(value: "The latest enfant terrible in the field of Artificial Intelligence is called ChatGPT and comes from OpenAI, a company founded a few years ago that is currently leading the way with products like the aforementioned ChatGPT or DALL-E."))
             ])
             
         }
