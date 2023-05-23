@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 extension BlogView : Buildable {
     
     /// Sets the visibility of the scroll indicator for the current view.
@@ -24,4 +25,8 @@ extension BlogView : Buildable {
     public func textLineSpacing(_ value: CGFloat) -> Self {
         mutating(keyPath: \.textLineSpacing, value: value)
     }
+    
+//    public func RightTopButton(_ value : some View) -> Self{
+//        mutating(keyPath: \.backButtonView, value: value)
+//    }
 }

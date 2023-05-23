@@ -15,6 +15,9 @@ struct DemoView: View {
         ZStack{
             BlogView(coverImage: UIImage(named: "semple"), content: [
                 "10 Deadly SwiftUI Mistakes and How You Can Avoid Them".toBlogContent(type: .title),
+                "How to pilot through the human roadblocks that clog the path to project execution.".toBlogContent(type: .caption2),
+                
+                    .init(ContentType: .divider),
                 
                 UIImage(named: "download2")!.toBlogContent(source: imageSource(text: "dribble.com",url: "https://dribbble.com/mindinventory")),
                 URL(string: "https://i.pinimg.com/564x/7d/c2/43/7dc24333f476a2505aa9a4bd70050997.jpg")!.toBlogContent_Image(),
@@ -26,6 +29,8 @@ struct DemoView: View {
                 "But these products are not exempt from controversy due to the debate that their use has caused within software development and the possible disappearance of developers at the hands of ChatGPT or one of its older brothers that is yet to come.".toBlogContent(type: .caption),
                 "But these products are not exempt from controversy due to the debate that their use has caused within software development and the possible disappearance of developers at the hands of ChatGPT or one of its older brothers that is yet to come.".toBlogContent(type: .caption),
                 "But these products are not exempt from controversy due to the debate that their use has caused within software development and the possible disappearance of developers at the hands of ChatGPT or one of its older brothers that is yet to come.".toBlogContent(type: .caption),
+                
+                .init(ContentType: .link(text: "Ref :", url: "https://dribbble.com/mindinventory"))
                 
             ])
             .showScrollIndictor(false)

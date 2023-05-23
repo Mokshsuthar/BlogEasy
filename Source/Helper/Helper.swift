@@ -167,6 +167,11 @@ extension View
         }
     }
     
+    //direct systmeicon image view
+    func systemIcon(_ name : String) -> some View{
+        return Image(systemName: name).resizeWithApectRatio()
+    }
+    
     
 }
 
@@ -268,5 +273,20 @@ extension UIImage {
 extension URL {
     public func toBlogContent_Image(source : imageSource? = nil) -> BlogCantent {
         return.init(ContentType: .image(image: .url(url: self.absoluteString),source: source))
+    }
+}
+
+
+extension Image {
+    
+    
+    //rectsize with aspect retio
+    func squareFrameWithApectRatio(value : CGFloat,contentMode : ContentMode = .fit) -> some View {
+        return self.resizable().aspectRatio( contentMode: contentMode).squareFrame(size: value)
+    }
+    
+    //imageResize and aspect ratio
+    func resizeWithApectRatio(contentMode : ContentMode = .fit) -> some View {
+        return self.resizable().aspectRatio( contentMode: contentMode)
     }
 }

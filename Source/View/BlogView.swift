@@ -24,9 +24,19 @@ public struct BlogView: View {
     //spacing between lines in pragraph
     var textLineSpacing : CGFloat = 2
     
+    var coverScrollOpacity : CGFloat = 0.4
+    
     var coverHeight : CGFloat =  UIDevice.current.isPad ?  300 : UIScreen.main.bounds.width
     
     var fontName : String?
+    
+    //scroll values for Scroll animation
+    @State var ScrollPer : CGFloat = .zero
+    @State var strachValue : CGFloat = .zero
+    @State var scrollBufferSize = UIDevice.current.isPad ?  300 : UIScreen.main.bounds.width
+    @State var scrollPosition : CGFloat = .zero
+    @State var coverOpacity : CGFloat = 1
+    
     
     var coverImage : UIImage?
     var content : [BlogCantent]
@@ -36,6 +46,43 @@ public struct BlogView: View {
         self.content = content
     }
     
+    @ViewBuilder
+    var backButtonView : some View{
+        Button {
+            
+        } label: {
+            systemIcon("arrow.left")
+                .padding(10)
+                .foregroundColor(Color.systemTextColor)
+                .squareFrame(size: 40)
+                .background(Color.systemBackgroudColor)
+                .cornerRadius(15)
+        }
+
+    }
+    
+    @ViewBuilder
+    var navigationView : some View {
+        VStack{
+            VStack(spacing : 0){
+                Spacer()
+                    .adjustForNotch()
+                HStack{
+                    backButtonView
+                    
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .fullWidth(height: 60)
+                
+            }
+            .background(BlurView(style: .systemUltraThinMaterial).opacity(ScrollPer))
+            
+            Spacer()
+        }
+       
+    }
+    
     public var body: some View {
         ZStack{
             
@@ -43,21 +90,20 @@ public struct BlogView: View {
                 if let img = self.coverImage{
                     Image(uiImage: img)
                         .resizable().aspectRatio(contentMode: .fill)
-                        .fullWidth(height: coverHeight)
+                        .fullWidth(height: coverHeight + strachValue)
                         .overlay(VStack{
                             LinearGradient(colors: [backgroundColor.opacity(0.6),backgroundColor.opacity(0)], startPoint: .top, endPoint: .bottom)
                                 .fullWidth(height: BlogView.notchHeight)
-                            
                             Spacer()
                             
-                            Spacer()
+                            LinearGradient(colors: [backgroundColor.opacity(0),backgroundColor], startPoint: .top, endPoint: .bottom)
                             .fullWidth(height: 80)
-                            .background(LinearGradient(colors: [backgroundColor.opacity(0),backgroundColor], startPoint: .top, endPoint: .bottom))
-                            
-                           
-                                
                         })
-                        .clipped()
+                        .cornerRadius(ScrollPer == 0 ? 0 : self.deviceCornerRadius())
+                        .blur(radius: 10 * ScrollPer)
+                        .opacity(coverOpacity)
+                        .scaleEffect(1 + (0.5 * ScrollPer))
+                    
                 }
                 
                 
@@ -91,7 +137,21 @@ public struct BlogView: View {
                         case .divider:
                             Divider()
                         case .link(let text,let url):
-                            Text(url)
+                            HStack{
+                                Text(text)
+                                
+                                Text(url)
+                                    .underline()
+                                    .foregroundColor(Color.blue)
+                                    .fullWidth( alignment: .leading)
+                                    .onTapGesture {
+                                        if let url = URL(string: url){
+                                            UIApplication.shared.open(url)
+                                        }
+                                    }
+                                    
+                            }
+                            .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light)
 //                        case .customView(let C_View):
 //                            C_View
                         case .EmptyView:
@@ -105,11 +165,17 @@ public struct BlogView: View {
                         }
                     }
                     
+                    Spacer().bottomSafeArea(ifZero: 15)
                    
                 }
                 .padding(.horizontal,paddingHorizontal)
+                .getScrollPosition(key: "blogScroll", handler: self.scrollViewDidScroll(value:))
+                
                 
             }
+            .coordinateSpace(name: "blogScroll")
+            
+            navigationView
             
         }
         .background(backgroundColor)
@@ -117,3 +183,37 @@ public struct BlogView: View {
     }
 }
 
+
+extension BlogView{
+    
+    
+    func scrollViewDidScroll(value : CGFloat){
+        if value < 0 {
+            //scroll Down
+            ScrollPer = .zero
+            strachValue = -value
+            scrollPosition = .zero
+            
+        } else if value > 0 {
+            //scroll Up
+            strachValue = .zero
+            if value <= scrollBufferSize - 10 {
+                ScrollPer =  value/scrollBufferSize
+                scrollPosition = value
+            } else {
+                withAnimation(.linear(duration: 0.2)) {
+                    ScrollPer = 1
+                }
+                scrollPosition = scrollBufferSize
+            }
+            
+        } else {
+            //scroll rest
+            ScrollPer = 0
+            scrollPosition = .zero
+            strachValue = .zero
+        }
+        
+        coverOpacity = 1 - (1 - coverScrollOpacity) * ScrollPer
+    }
+}
