@@ -44,20 +44,18 @@ extension BlogView{
                        
                 }
             }
-            .fullWidth(height: coverHeight)
+            .fullWidth(height: coverHeight + strachValue)
          
             .blur(radius: 10 * ScrollPer)
             .opacity(coverOpacity)
             .overlay(VStack{
-                LinearGradient(colors: [backgroundColor.opacity(0.6),backgroundColor.opacity(0)], startPoint: .top, endPoint: .bottom)
-                    .fullWidth(height: BlogView.notchHeight)
                 Spacer()
                 
                 LinearGradient(colors: [backgroundColor.opacity(0),backgroundColor], startPoint: .top, endPoint: .bottom)
                 .fullWidth(height: 100)
             })
             .clipped()
-            .scaleEffect(1 + (0.5 * ScrollPer))
+            .scaleEffect(1 + (0.5 * ScrollPer) )
             
             
         }

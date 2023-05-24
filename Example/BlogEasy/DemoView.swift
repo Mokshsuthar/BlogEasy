@@ -15,7 +15,7 @@ struct DemoView: View {
         ZStack{
             BlogView(coverImage: .url(url: "https://i.pinimg.com/736x/7c/bd/0a/7cbd0a418c3cefc6ba1d6d5b7170b535.jpg"), content: [
                 
-                "Blog".toBlogContent(type: .subheadline,config: .init(size: 15, fontWeight: .bold, color: Color.accentColor, UnderLine: false, smallCaps: true, opacity: 1, alignment: .leading)),
+                "Blog".toBlogContent(type: .subheadline,config: .init(size: 15, fontWeight: .bold, color: Color.red, UnderLine: false, smallCaps: true, opacity: 1, alignment: .leading)),
                 
                 "Top 10 Car Stories Which Perfectly Encapsulate 2020".toBlogContent(type: .headline,config: .init(size : 24,fontWeight: .heavy)),
                 
@@ -62,46 +62,3 @@ struct DemoView_Previews: PreviewProvider {
     }
 }
 
-
-//@ViewBuilder
-//func TextContent(type : BlogCantentType) -> some View{
-//    switch type {
-//    case .title(let value,let config):
-//        Text(value)
-//            .setFont(name: fontName, size: 25 + fontsizeScaler,weight: .heavy,isSmalleCaps: config.smallCaps)
-//            .foregroundColor(config.color)
-//            .multilineTextAlignment(config.alignment)
-//            .lineSpacing(textLineSpacing)
-//            .fullWidth(alignment: .leading)
-//    case .headline(let value,let config):
-//        Text(value)
-//            .setFont(name: fontName, size: 21 + fontsizeScaler,weight: .bold,isSmalleCaps: config.smallCaps)
-//            .foregroundColor(config.color)
-//            .multilineTextAlignment(config.alignment)
-//            .lineSpacing(textLineSpacing)
-//            .fullWidth(alignment: .leading)
-//    case .subheadline(let value,let config):
-//        Text(value)
-//            .setFont(name: fontName, size: 18 + fontsizeScaler,weight: .bold,isSmalleCaps: config.smallCaps)
-//            .foregroundColor(config.color)
-//            .multilineTextAlignment(config.alignment)
-//            .lineSpacing(textLineSpacing)
-//            .fullWidth(alignment: .leading)
-//    case .caption(let value,let config):
-//        Text(value)
-//            .setFont(name: fontName, size: 16 + fontsizeScaler,weight: .light,isSmalleCaps: config.smallCaps)
-//            .foregroundColor(config.color)
-//            .multilineTextAlignment(config.alignment)
-//            .lineSpacing(textLineSpacing)
-//            .fullWidth(alignment: .leading)
-//    case .caption2(let value,let config):
-//        Text(value)
-//            .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light,isSmalleCaps: config.smallCaps)
-//            .foregroundColor(config.color)
-//            .multilineTextAlignment(config.alignment)
-//            .lineSpacing(textLineSpacing)
-//            .fullWidth(alignment: .leading)
-//    default:
-//        EmptyView()
-//    }
-//}

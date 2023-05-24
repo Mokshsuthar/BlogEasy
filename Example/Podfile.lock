@@ -1,7 +1,7 @@
 PODS:
   - BlogEasy (0.1.0):
     - Kingfisher
-  - Kingfisher (6.3.1)
+  - Kingfisher (7.5.0)
 
 DEPENDENCIES:
   - BlogEasy (from `../`)
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BlogEasy: 2a04b6089314d678d275f1da0a805a864f66b6b7
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  BlogEasy: fd31ebbc2cb5a7fc733fd513988b0a5e32d4764f
+  Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
 
-PODFILE CHECKSUM: c117a28c63c289215df76b0a341890fa496428be
+PODFILE CHECKSUM: a7e5443c05b48b4f450d19f53147f72dfb86a9f7
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.11.3

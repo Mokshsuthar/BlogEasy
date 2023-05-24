@@ -79,7 +79,7 @@ public struct BlogView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .fullWidth(height: 60)
+                .fullWidth(height: 55)
                 
             }
             .background(BlurView(style: .systemUltraThinMaterial).opacity(ScrollPer))
@@ -171,7 +171,6 @@ public struct BlogView: View {
                 CoverImage()
                 Spacer()
             }
-            
             
             Content_scrollView
             
