@@ -11,6 +11,8 @@ import SwiftUI
 public struct BlogView: View {
     //backgroud color
     var backgroundColor : Color = .systemBackgroudColor
+    var textColor : Color = .systemTextColor
+    
     
     //TO manage font by slider
     var fontsizeScaler : CGFloat = 1
@@ -23,6 +25,9 @@ public struct BlogView: View {
     
     //spacing between lines in pragraph
     var textLineSpacing : CGFloat = 2
+    
+    //Accent Color
+    var accentColor : Color = Color.accentColor
     
     var coverScrollOpacity : CGFloat = 0.4
     
@@ -121,13 +126,21 @@ public struct BlogView: View {
                    
                     ForEach(content,id: \.id) { content in
                         switch content.ContentType {
-                        case .title(_,_),.headline(_,_),.subheadline(_,_),.caption(_,_),.caption2(_,_) :
-                            TextContent(type: content.ContentType)
+                        case .title(let value,let config) :
+                            TextContent(value: value, config: config)
+                        case .headline(let value,let config):
+                            TextContent(value: value, config: config)
+                        case .subheadline(let value,let config):
+                            TextContent(value: value, config: config)
+                        case .caption(let value,let config):
+                            TextContent(value: value, config: config)
+                        case .caption2(let value,let config):
+                            TextContent(value: value, config: config)
                         case .image(let provider,let config):
                             ImageView(provider: provider, config: config)
-                        case .bullet(let bulletImage,let value):
-                            Text(value)
-                        case .TextBullet(let BulletString, let value):
+                        case .bullet(let value,let config):
+                            BulletPoint(value: value, config: config)
+                        case .CodeBlock(let value)
                             Text(value)
                         case .divider:
                             Divider()
@@ -154,8 +167,6 @@ public struct BlogView: View {
                         case .spacer(let height):
                             Spacer()
                                 .fullWidth(height: height)
-                        default :
-                            Text("ffffff")
                         
                         }
                     }

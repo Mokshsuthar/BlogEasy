@@ -250,15 +250,15 @@ extension String {
     public func toBlogContent(type : TextBlogContents,config : TextConfig? = nil) -> BlogCantent {
         switch type {
         case .title:
-            return .init(ContentType: .title(value: self,config: config ?? defaultTextConfig))
+            return .init(ContentType: .title(value: self,config: config ?? .init(size: 26, fontWeight: .heavy)))
         case .headline:
-            return .init(ContentType: .headline(value: self,config: config ?? defaultTextConfig))
+            return .init(ContentType: .headline(value: self,config: config ?? .init(size: 21, fontWeight: .semibold)))
         case .subheadline:
-            return .init(ContentType: .subheadline(value: self,config: config ?? defaultTextConfig))
+            return .init(ContentType: .subheadline(value: self,config: config ?? .init(size: 18, fontWeight: .regular)))
         case .caption:
-            return .init(ContentType: .caption(value: self,config: config ?? defaultTextConfig))
+            return .init(ContentType: .caption(value: self,config: config ?? .init(size: 16, fontWeight: .light)))
         case .caption2:
-            return .init(ContentType: .caption2(value: self,config: config ?? defaultTextConfig))
+            return .init(ContentType: .caption2(value: self,config: config ?? .init(size: 14, fontWeight: .light)))
        
         }
     }

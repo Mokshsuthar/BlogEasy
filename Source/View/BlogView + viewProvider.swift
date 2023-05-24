@@ -22,7 +22,7 @@ extension BlogView{
                         .fullWidth()
                         .background(config.backgroundColor)
                         .cornerRadius(config.cornerRadius)
-                        .shadow(color: Color.black.opacity(config.showShadow ? 0.2 : 0), radius: 4, x: 0, y: 0)
+                        .shadow(color: Color.black.opacity(config.showShadow ? 0.4 : 0), radius: 8, x: 0, y: 0)
                 }
                 
                 
@@ -58,57 +58,64 @@ extension BlogView{
   
     
     @ViewBuilder
-    func TextContent(type : BlogCantentType) -> some View{
+    func TextContent(value : String,config : TextConfig) -> some View{
+       
+        Text(value)
+            .underline(config.UnderLine)
+            .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
+            .foregroundColor(config.color)
+            .multilineTextAlignment(config.alignment)
+            .lineSpacing(textLineSpacing)
+            .fullWidth(alignment: .leading)
+            .opacity(config.opacity)
         
-        switch type {
-        case .title(let value,let config):
-            Text(value)
-                .underline(config.UnderLine)
-                .setFont(name: fontName, size: 25 + fontsizeScaler,weight: .heavy,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
-//                .textUnderLine(isActive: config.UnderLine)
-                .multilineTextAlignment(config.alignment)
-                .lineSpacing(textLineSpacing)
-                .fullWidth(alignment: .leading)
-                .opacity(config.opacity)
-        case .headline(let value,let config):
-            Text(value)
-                .underline(config.UnderLine)
-                .setFont(name: fontName, size: 21 + fontsizeScaler,weight: .bold,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
-                .multilineTextAlignment(config.alignment)
-                .lineSpacing(textLineSpacing)
-                .fullWidth(alignment: .leading)
-                .opacity(config.opacity)
-        case .subheadline(let value,let config):
-            Text(value)
-                .underline(config.UnderLine)
-                .setFont(name: fontName, size: 18 + fontsizeScaler,weight: .bold,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
-                .multilineTextAlignment(config.alignment)
-                .lineSpacing(textLineSpacing)
-                .fullWidth(alignment: .leading)
-                .opacity(config.opacity)
-        case .caption(let value,let config):
-            Text(value)
-                .underline(config.UnderLine)
-                .setFont(name: fontName, size: 16 + fontsizeScaler,weight: .light,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
-                .multilineTextAlignment(config.alignment)
-                .lineSpacing(textLineSpacing)
-                .fullWidth(alignment: .leading)
-                .opacity(config.opacity)
-        case .caption2(let value,let config):
-            Text(value)
-                .underline(config.UnderLine)
-                .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
-                .multilineTextAlignment(config.alignment)
-                .lineSpacing(textLineSpacing)
-                .fullWidth(alignment: .leading)
-                .opacity(config.opacity)
-        default:
-            EmptyView()
+    }
+    
+    @ViewBuilder
+    func BulletPoint(value : String,config : BulletPointConfig) -> some View {
+        HStack(alignment: .top, spacing : 5) {
+            switch config.bulletType{
+            case .Text(let BulletTextvalue ,let color,let isContinue):
+                if isContinue{
+                    Group{
+                        Text("\(BulletTextvalue) ")
+                            .fontWeight(.bold)
+                            .foregroundColor(color ?? textColor)
+                        +
+                        
+                        Text(value)
+                            
+                            .foregroundColor(config.textColor ?? textColor)
+                           
+                    }
+                    .setFont(name: fontName, size: config.fontSize, weight: config.fontWeight)
+                    .fullWidth(alignment: .leading)
+                }else {
+                    Text(BulletTextvalue)
+                        .setFont(name: fontName, size: config.fontSize, weight: .bold)
+                        .foregroundColor(color ?? textColor)
+                    
+                    Text(value)
+                        .setFont(name: fontName, size: config.fontSize, weight: config.fontWeight)
+                        .foregroundColor(config.textColor ?? textColor)
+                        .fullWidth(alignment: .leading)
+                }
+                
+                
+            case .systemImage(let name,let color):
+                systemIcon(name)
+                    .foregroundColor(color ?? accentColor)
+                    .padding(3)
+                    .squareFrame(size: config.fontSize)
+                    .padding(.top,2)
+                
+                Text(value)
+                    .setFont(name: fontName, size: config.fontSize, weight: config.fontWeight)
+                    .foregroundColor(config.textColor ?? textColor)
+                    .fullWidth(alignment: .leading)
+            }
+            
+            
         }
     }
 }
