@@ -48,7 +48,7 @@
 
 /* Begin PBXFileReference section */
 		092D2DD680C85260403B29907C8FE486 /* Pods-BlogEasy_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BlogEasy_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0A48656A4B0A53652ABA662DFB3E1C9D /* BlogEasy.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BlogEasy.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0A48656A4B0A53652ABA662DFB3E1C9D /* BlogEasy.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BlogEasy.podspec; sourceTree = "<group>"; tabWidth = 2; };
 		0AD5CFE7E373AB0E25B41E7737AF1839 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1DA8D993BAC349B6C89457CCF06DBA1E /* Pods-BlogEasy_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BlogEasy_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		1ED5267EF1CEA3347A3FBBC8F99179F3 /* Pods-BlogEasy_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BlogEasy_Example-dummy.m"; sourceTree = "<group>"; };
