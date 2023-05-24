@@ -8,8 +8,60 @@
 import Foundation
 import SwiftUI
 import UIKit
+import Kingfisher
 
 extension BlogView{
+    
+    @ViewBuilder
+    func CoverImage() -> some View {
+        if let coverImageProvider = self.coverImage{
+           
+            ZStack{
+                
+                switch coverImageProvider {
+                case .uiimage(let image):
+                    if let img = image{
+                        Image(uiImage: img)
+                            .resizable().aspectRatio(contentMode: .fill)
+                            .fullWidth()
+                           
+                    }
+                   
+                case .url(let url):
+//                    if let url = URL(string: url){
+//
+//                    }
+                    KFImage.url( URL(string: url)!)
+                        .resizable()
+//                                    .placeholder(Rectangle().fill(Color.green))
+                        .loadDiskFileSynchronously()
+                    //                    .cancelOnDisappear(true)
+                        .cacheMemoryOnly()
+                        .fade(duration: 0.25)
+                        .aspectRatio(contentMode: .fill)
+                        .fullWidth()
+                        
+                       
+                }
+            }
+            .fullWidth(height: coverHeight)
+         
+            .blur(radius: 10 * ScrollPer)
+            .opacity(coverOpacity)
+            .overlay(VStack{
+                LinearGradient(colors: [backgroundColor.opacity(0.6),backgroundColor.opacity(0)], startPoint: .top, endPoint: .bottom)
+                    .fullWidth(height: BlogView.notchHeight)
+                Spacer()
+                
+                LinearGradient(colors: [backgroundColor.opacity(0),backgroundColor], startPoint: .top, endPoint: .bottom)
+                .fullWidth(height: 100)
+            })
+            .clipped()
+            .scaleEffect(1 + (0.5 * ScrollPer))
+            
+            
+        }
+    }
     
     @ViewBuilder
     func ImageView(provider : imageProvider,config : ImageConfig) -> some View {
@@ -27,8 +79,20 @@ extension BlogView{
                 
                 
             case .url(let url):
-                Text(url)
+                KFImage.url(URL(string: url)!)
+                    .resizable()
+//                    .placeholder(UI)
+                    .loadDiskFileSynchronously()
+                    .cancelOnDisappear(true)
+                    .cacheMemoryOnly()
+                    .fade(duration: 0.25)
+                    .aspectRatio(contentMode: .fit)
+                    .fullWidth()
+                    .background(config.backgroundColor)
+                    .cornerRadius(config.cornerRadius)
+                    .shadow(color: Color.black.opacity(config.showShadow ? 0.4 : 0), radius: 8, x: 0, y: 0)
             }
+            //source of image if Added
             if let source = config.source {
                 HStack(spacing : 3){
                     Text("source :")

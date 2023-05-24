@@ -19,7 +19,7 @@ public struct BlogCantent : Identifiable {
 
 public enum BlogCantentType {
     case title(value : String,config : TextConfig = .init(size: 26, fontWeight: .heavy))
-    case headline(value : String,config : TextConfig = .init(size: 21, fontWeight: .semibold))
+    case headline(value : String,config : TextConfig = .init(size: 21, fontWeight: .bold))
     case subheadline(value : String,config : TextConfig = .init(size: 18, fontWeight: .regular))
     case caption(value :String,config : TextConfig = .init(size: 16, fontWeight: .light))
     case caption2(value : String,config : TextConfig = .init(size: 14, fontWeight: .light))

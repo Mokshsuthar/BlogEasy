@@ -1,15 +1,22 @@
 PODS:
-  - BlogEasy (0.1.0)
+  - BlogEasy (0.1.0):
+    - Kingfisher
+  - Kingfisher (6.3.1)
 
 DEPENDENCIES:
   - BlogEasy (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
 
 EXTERNAL SOURCES:
   BlogEasy:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BlogEasy: 8996dd7a9e34f826d82fad87114df640836a7988
+  BlogEasy: 2a04b6089314d678d275f1da0a805a864f66b6b7
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
 
 PODFILE CHECKSUM: c117a28c63c289215df76b0a341890fa496428be
 

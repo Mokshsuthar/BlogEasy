@@ -252,7 +252,7 @@ extension String {
         case .title:
             return .init(ContentType: .title(value: self,config: config ?? .init(size: 26, fontWeight: .heavy)))
         case .headline:
-            return .init(ContentType: .headline(value: self,config: config ?? .init(size: 21, fontWeight: .semibold)))
+            return .init(ContentType: .headline(value: self,config: config ?? .init(size: 21, fontWeight: .bold)))
         case .subheadline:
             return .init(ContentType: .subheadline(value: self,config: config ?? .init(size: 18, fontWeight: .regular)))
         case .caption:

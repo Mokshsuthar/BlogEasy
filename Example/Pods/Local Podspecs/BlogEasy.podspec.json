@@ -1,9 +1,9 @@
 {
   "name": "BlogEasy",
   "version": "0.1.0",
-  "summary": "A short description of BlogEasy.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Moksh/BlogEasy",
+  "summary": "A Fast and Customizable Solution for Stunning Blog Views",
+  "description": "Introducing BlogEasy, a revolutionary framework designed to effortlessly create visually stunning and highly customizable blog views. With BlogEasy, bloggers and developers can save time and effort by streamlining the blog creation process while achieving breathtaking results.\\nSpeed and Simplicity:\\nBlogEasy prides itself on its user-friendly interface and intuitive design. Gone are the days of struggling with complex coding or spending hours tinkering with layouts. This framework enables bloggers of all skill levels to quickly set up and launch their blogs without any hassle. Say goodbye to tedious manual formatting and welcome a streamlined blogging experience.\\nFully Customizable:\\nBlogEasy puts the power of customization in your hands. With an extensive array of pre-designed templates and themes, you can choose the perfect style that matches your blog's personality and content. From fonts, colors, and backgrounds to header designs and post layouts, every aspect of your blog view can be tailored to your liking. Express your unique voice and create a blog that resonates with your audience.",
+  "homepage": "https://github.com/Mokshsuthar/BlogEasy/tree/main",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -16,7 +16,14 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "13.0"
   },
-  "source_files": "BlogEasy/Classes/**/*"
+  "source_files": "Source/**/*",
+  "swift_versions": "5.0",
+  "dependencies": {
+    "Kingfisher": [
+
+    ]
+  },
+  "swift_version": "5.0"
 }

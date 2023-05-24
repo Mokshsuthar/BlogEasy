@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 
 public struct BlogView: View {
@@ -43,10 +44,10 @@ public struct BlogView: View {
     @State var coverOpacity : CGFloat = 1
     
     
-    var coverImage : UIImage?
+    var coverImage : imageProvider?
     var content : [BlogCantent]
     
-    public init(coverImage : UIImage?,content: [BlogCantent]) {
+    public init(coverImage : imageProvider?,content: [BlogCantent]) {
         self.coverImage = coverImage
         self.content = content
     }
@@ -88,34 +89,10 @@ public struct BlogView: View {
        
     }
     
-    public var body: some View {
+    
+    
+    @ViewBuilder var Content_scrollView : some View{
         ZStack{
-            
-            VStack{
-                if let img = self.coverImage{
-                    Image(uiImage: img)
-                        .resizable().aspectRatio(contentMode: .fill)
-                        .fullWidth(height: coverHeight + strachValue)
-                        .overlay(VStack{
-                            LinearGradient(colors: [backgroundColor.opacity(0.6),backgroundColor.opacity(0)], startPoint: .top, endPoint: .bottom)
-                                .fullWidth(height: BlogView.notchHeight)
-                            Spacer()
-                            
-                            LinearGradient(colors: [backgroundColor.opacity(0),backgroundColor], startPoint: .top, endPoint: .bottom)
-                            .fullWidth(height: 80)
-                        })
-                        .cornerRadius(ScrollPer == 0 ? 0 : self.deviceCornerRadius())
-                        .blur(radius: 10 * ScrollPer)
-                        .opacity(coverOpacity)
-                        .scaleEffect(1 + (0.5 * ScrollPer))
-                    
-                }
-                
-                
-                Spacer()
-            }
-            
-            
             ScrollView(.vertical,showsIndicators: showScrollIndicator) {
             
                 C_lazyVstack(spacing: 16) {
@@ -160,8 +137,8 @@ public struct BlogView: View {
                                     
                             }
                             .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light)
-//                        case .customView(let C_View):
-//                            C_View
+    //                        case .customView(let C_View):
+    //                            C_View
                         case .EmptyView:
                             EmptyView()
                         case .spacer(let height):
@@ -179,7 +156,24 @@ public struct BlogView: View {
                 
                 
             }
-            .coordinateSpace(name: "blogScroll")
+    //            .coordinateSpace(name: "blogScroll")
+            
+        }
+        .fullFrame()
+       
+    }
+    
+    
+    public var body: some View {
+        ZStack{
+            
+            VStack{
+                CoverImage()
+                Spacer()
+            }
+            
+            
+            Content_scrollView
             
             navigationView
             
