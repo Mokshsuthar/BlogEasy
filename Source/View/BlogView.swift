@@ -33,7 +33,7 @@ public struct BlogView: View {
     //scroll values for Scroll animation
     @State var ScrollPer : CGFloat = .zero
     @State var strachValue : CGFloat = .zero
-    @State var scrollBufferSize = UIDevice.current.isPad ?  300 : UIScreen.main.bounds.width
+    @State var scrollBufferSize = (UIDevice.current.isPad ?  300 : UIScreen.main.bounds.width) - (UIDevice.current.notchSize + 60)
     @State var scrollPosition : CGFloat = .zero
     @State var coverOpacity : CGFloat = 1
     
@@ -47,7 +47,7 @@ public struct BlogView: View {
     }
     
     @ViewBuilder
-    var backButtonView : some View{
+    var backButtonView : some View {
         Button {
             
         } label: {
@@ -56,7 +56,7 @@ public struct BlogView: View {
                 .foregroundColor(Color.systemTextColor)
                 .squareFrame(size: 40)
                 .background(Color.systemBackgroudColor)
-                .cornerRadius(15)
+                .cornerRadius(20)
         }
 
     }
@@ -121,15 +121,10 @@ public struct BlogView: View {
                    
                     ForEach(content,id: \.id) { content in
                         switch content.ContentType {
-                        case .title(_),.headline(_),.subheadline(_),.caption(_),.caption2(_) :
+                        case .title(_,_),.headline(_,_),.subheadline(_,_),.caption(_,_),.caption2(_,_) :
                             TextContent(type: content.ContentType)
-                            
-                        case .image(let provider,let source):
-                            ImageView(provider: provider, source: source)
-                            
-                            
-                        case .transparentImage(let img):
-                            Image(uiImage: img)
+                        case .image(let provider,let config):
+                            ImageView(provider: provider, config: config)
                         case .bullet(let bulletImage,let value):
                             Text(value)
                         case .TextBullet(let BulletString, let value):

@@ -159,14 +159,14 @@ extension View
     
     
 
-    func setFont(name : String?,size : CGFloat,weight : Font.Weight) -> some View{
+    func setFont(name : String?,size : CGFloat,weight : Font.Weight,isSmallCaps : Bool = false) -> some View{
+        var font : Font = .system(size: size,weight: weight)
         if let name = name {
-            return self.font(Font.custom(name, size: size))
-        } else {
-            return self.font(.system(size: size,weight: weight))
+            font = Font.custom(name, size: size)
         }
+        return self.font(isSmallCaps ? font.smallCaps() : font)
     }
-    
+
     //direct systmeicon image view
     func systemIcon(_ name : String) -> some View{
         return Image(systemName: name).resizeWithApectRatio()
@@ -247,44 +247,41 @@ extension String {
         case title,headline,subheadline,caption,caption2
     }
     
-    public func toBlogContent(type : TextBlogContents) -> BlogCantent {
+    public func toBlogContent(type : TextBlogContents,config : TextConfig? = nil) -> BlogCantent {
         switch type {
         case .title:
-            return .init(ContentType: .title(value: self))
+            return .init(ContentType: .title(value: self,config: config ?? defaultTextConfig))
         case .headline:
-            return .init(ContentType: .headline(value: self))
+            return .init(ContentType: .headline(value: self,config: config ?? defaultTextConfig))
         case .subheadline:
-            return .init(ContentType: .subheadline(value: self))
+            return .init(ContentType: .subheadline(value: self,config: config ?? defaultTextConfig))
         case .caption:
-            return .init(ContentType: .caption(value: self))
+            return .init(ContentType: .caption(value: self,config: config ?? defaultTextConfig))
         case .caption2:
-            return .init(ContentType: .caption2(value: self))
+            return .init(ContentType: .caption2(value: self,config: config ?? defaultTextConfig))
        
         }
     }
 }
 
 extension UIImage {
-    public func toBlogContent(source : imageSource? = nil) -> BlogCantent {
-        return.init(ContentType: .image(image: .uiimage(image: self),source: source))
+    public func toBlogContent(config : ImageConfig = .init()) -> BlogCantent {
+        return.init(ContentType: .image(image: .uiimage(image: self),config: config))
     }
 }
 
 extension URL {
-    public func toBlogContent_Image(source : imageSource? = nil) -> BlogCantent {
-        return.init(ContentType: .image(image: .url(url: self.absoluteString),source: source))
+    public func toBlogContent_Image(config : ImageConfig = .init()) -> BlogCantent {
+        return.init(ContentType: .image(image: .url(url: self.absoluteString),config: config))
     }
 }
 
 
 extension Image {
-    
-    
     //rectsize with aspect retio
     func squareFrameWithApectRatio(value : CGFloat,contentMode : ContentMode = .fit) -> some View {
         return self.resizable().aspectRatio( contentMode: contentMode).squareFrame(size: value)
     }
-    
     //imageResize and aspect ratio
     func resizeWithApectRatio(contentMode : ContentMode = .fit) -> some View {
         return self.resizable().aspectRatio( contentMode: contentMode)

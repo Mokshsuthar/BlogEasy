@@ -26,7 +26,7 @@ extension BlogView : Buildable {
         mutating(keyPath: \.textLineSpacing, value: value)
     }
     
-//    public func RightTopButton(_ value : some View) -> Self{
-//        mutating(keyPath: \.backButtonView, value: value)
+//    public func RightTopButton(@ViewBuilder content: () -> View) -> Self{
+//        mutating(keyPath: \.backButtonView, value: content)
 //    }
 }
