@@ -26,6 +26,11 @@ extension BlogView : Buildable {
         mutating(keyPath: \.textLineSpacing, value: value)
     }
     
+    ///Registers a callback closure to be executed when the back button is pressed.
+    public func onBackPress(_ callback: (() -> Void)?) -> Self {
+        mutating(keyPath: \.backButtonAction, value: callback)
+    }
+    
 //    public func RightTopButton(@ViewBuilder content: () -> View) -> Self{
 //        mutating(keyPath: \.backButtonView, value: content)
 //    }

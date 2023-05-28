@@ -10,12 +10,15 @@
 		35F2699C6601ED485E106FD3 /* Pods_BlogEasy_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D926B67F475468BDEFD0093 /* Pods_BlogEasy_Tests.framework */; };
 		5D5E2F3FFC447B417C9949AE /* Pods_BlogEasy_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8F5AF5062CE136CB9DBD6D /* Pods_BlogEasy_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		9CBF61BE2A1B6C3900DE4F6D /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF61BD2A1B6C3900DE4F6D /* DemoView.swift */; };
+		66E99CFA2A2125CE0079A91F /* BlogExampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E99CF92A2125CE0079A91F /* BlogExampleListView.swift */; };
+		66E99CFC2A2128640079A91F /* BlogExampleListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E99CFB2A2128640079A91F /* BlogExampleListVC.swift */; };
+		66E99CFE2A212B770079A91F /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E99CFD2A212B770079A91F /* BlurView.swift */; };
+		66E99D002A21F1EB0079A91F /* BlogOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E99CFF2A21F1EB0079A91F /* BlogOpenView.swift */; };
+		66E99D032A21FAD30079A91F /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E99D022A21FAD30079A91F /* Extentions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +37,6 @@
 		607FACD01AFB9204008FA782 /* BlogEasy_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogEasy_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -42,9 +44,13 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		65C3BEF8D2229007AD90C32E /* Pods-BlogEasy_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogEasy_Example.release.xcconfig"; path = "Target Support Files/Pods-BlogEasy_Example/Pods-BlogEasy_Example.release.xcconfig"; sourceTree = "<group>"; };
+		66E99CF92A2125CE0079A91F /* BlogExampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogExampleListView.swift; sourceTree = "<group>"; };
+		66E99CFB2A2128640079A91F /* BlogExampleListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogExampleListVC.swift; sourceTree = "<group>"; };
+		66E99CFD2A212B770079A91F /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = ../../Classes/Helper/BlurView.swift; sourceTree = "<group>"; };
+		66E99CFF2A21F1EB0079A91F /* BlogOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogOpenView.swift; sourceTree = "<group>"; };
+		66E99D022A21FAD30079A91F /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		6D926B67F475468BDEFD0093 /* Pods_BlogEasy_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlogEasy_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAAE1CD290D02E58279551D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		9CBF61BD2A1B6C3900DE4F6D /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		B15FC85A7A50C7BC764A2F6C /* Pods-BlogEasy_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogEasy_Tests.release.xcconfig"; path = "Target Support Files/Pods-BlogEasy_Tests/Pods-BlogEasy_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D0661852C35C0A878645006F /* Pods-BlogEasy_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlogEasy_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BlogEasy_Tests/Pods-BlogEasy_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA8F5AF5062CE136CB9DBD6D /* Pods_BlogEasy_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlogEasy_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +158,14 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		66E99D012A21FAC70079A91F /* Halper */ = {
+			isa = PBXGroup;
+			children = (
+				66E99D022A21FAD30079A91F /* Extentions.swift */,
+			);
+			name = Halper;
+			sourceTree = "<group>";
+		};
 		792644963A1A19B4CA52C882 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +180,7 @@
 		9CBF61B62A1B6BB700DE4F6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				66E99CFD2A212B770079A91F /* BlurView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -173,7 +188,8 @@
 		9CBF61B72A1B6BD400DE4F6D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9CBF61BD2A1B6C3900DE4F6D /* DemoView.swift */,
+				66E99CF92A2125CE0079A91F /* BlogExampleListView.swift */,
+				66E99CFF2A21F1EB0079A91F /* BlogOpenView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -188,7 +204,7 @@
 		9CBF61B92A1B6BE400DE4F6D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				66E99CFB2A2128640079A91F /* BlogExampleListVC.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -213,6 +229,7 @@
 		9CBF61BC2A1B6C0A00DE4F6D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				66E99D012A21FAC70079A91F /* Halper */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 			);
 			name = Resource;
@@ -352,11 +369,13 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BlogEasy_Example/Pods-BlogEasy_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BlogEasy/BlogEasy.framework",
+				"${BUILT_PRODUCTS_DIR}/Highlightr/Highlightr.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlogEasy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Highlightr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,9 +412,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				9CBF61BE2A1B6C3900DE4F6D /* DemoView.swift in Sources */,
+				66E99CFC2A2128640079A91F /* BlogExampleListVC.swift in Sources */,
+				66E99CFE2A212B770079A91F /* BlurView.swift in Sources */,
+				66E99D032A21FAD30079A91F /* Extentions.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				66E99D002A21F1EB0079A91F /* BlogOpenView.swift in Sources */,
+				66E99CFA2A2125CE0079A91F /* BlogExampleListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

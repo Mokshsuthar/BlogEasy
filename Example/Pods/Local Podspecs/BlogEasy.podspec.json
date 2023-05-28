@@ -23,6 +23,9 @@
   "dependencies": {
     "Kingfisher": [
 
+    ],
+    "Highlightr": [
+
     ]
   },
   "swift_version": "5.0"

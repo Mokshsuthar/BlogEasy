@@ -1,6 +1,8 @@
 PODS:
   - BlogEasy (0.1.0):
+    - Highlightr
     - Kingfisher
+  - Highlightr (2.1.0)
   - Kingfisher (7.5.0)
 
 DEPENDENCIES:
@@ -8,6 +10,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Highlightr
     - Kingfisher
 
 EXTERNAL SOURCES:
@@ -15,7 +18,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BlogEasy: fd31ebbc2cb5a7fc733fd513988b0a5e32d4764f
+  BlogEasy: a415bbccdfefe66166b1b1e2cf383d7ecf368764
+  Highlightr: 595f3e100737c8de41113385da8bd0b5b65212c6
   Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
 
 PODFILE CHECKSUM: a7e5443c05b48b4f450d19f53147f72dfb86a9f7

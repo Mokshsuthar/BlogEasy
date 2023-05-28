@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Highlightr
 
 
 public struct BlogView: View {
@@ -16,7 +17,7 @@ public struct BlogView: View {
     
     
     //TO manage font by slider
-    var fontsizeScaler : CGFloat = 1
+    var fontsizeScaler : CGFloat = 0
     
     //show and hide scrollview Indicator
     var showScrollIndicator : Bool = true
@@ -45,17 +46,20 @@ public struct BlogView: View {
     
     
     var coverImage : imageProvider?
-    var content : [BlogCantent]
+    var blogData : BlogData
     
-    public init(coverImage : imageProvider?,content: [BlogCantent]) {
-        self.coverImage = coverImage
-        self.content = content
+    var backButtonAction : (() -> Void)?
+    
+    public init(data : BlogData) {
+        self.blogData = data
     }
     
     @ViewBuilder
     var backButtonView : some View {
         Button {
-            
+            if let backAction = backButtonAction {
+                backAction()
+            }
         } label: {
             systemIcon("arrow.left")
                 .padding(10)
@@ -101,19 +105,11 @@ public struct BlogView: View {
                         .fullWidth(height: coverHeight)
                         .padding(.bottom,-50)
                    
-                    ForEach(content,id: \.id) { content in
+                    ForEach(blogData.content,id: \.id) { content in
                         switch content.ContentType {
-                        case .title(let value,let config) :
-                            TextContent(value: value, config: config)
-                        case .headline(let value,let config):
-                            TextContent(value: value, config: config)
-                        case .subheadline(let value,let config):
-                            TextContent(value: value, config: config)
-                        case .caption(let value,let config):
-                            TextContent(value: value, config: config)
-                        case .caption2(let value,let config):
-                            TextContent(value: value, config: config)
-                        case .image(let provider,let config):
+                        case .title(_,_),.headline(_,_),.subheadline(_,_),.caption(_,_),.caption2(_,_),.customText(_,_) :
+                            TextContent(type: content.ContentType)
+                       case .image(let provider,let config):
                             ImageView(provider: provider, config: config)
                         case .bullet(let value,let config):
                             BulletPoint(value: value, config: config)
@@ -121,22 +117,12 @@ public struct BlogView: View {
                             Text(value)
                         case .divider:
                             Divider()
+                        case .codeView(let value):
+                            CodeEditorView(text: value,showCopyBtn: false)
+                           
+                           
                         case .link(let text,let url):
-                            HStack{
-                                Text(text)
-                                
-                                Text(url)
-                                    .underline()
-                                    .foregroundColor(Color.blue)
-                                    .fullWidth( alignment: .leading)
-                                    .onTapGesture {
-                                        if let url = URL(string: url){
-                                            UIApplication.shared.open(url)
-                                        }
-                                    }
-                                    
-                            }
-                            .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light)
+                           linkView(text: text, url: url)
     //                        case .customView(let C_View):
     //                            C_View
                         case .EmptyView:
@@ -145,6 +131,14 @@ public struct BlogView: View {
                             Spacer()
                                 .fullWidth(height: height)
                         
+                        case .linkPreview(let type, let url):
+                            if let url = URL(string: url){
+                                LinkPreview(url: url)
+                                    .type(type)
+                            } else {
+                                EmptyView()
+                            }
+                           
                         }
                     }
                     
@@ -178,6 +172,7 @@ public struct BlogView: View {
             
         }
         .background(backgroundColor)
+       
         .ignoreSafeArea_C()
     }
 }

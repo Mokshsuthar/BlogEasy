@@ -14,7 +14,7 @@ extension BlogView{
     
     @ViewBuilder
     func CoverImage() -> some View {
-        if let coverImageProvider = self.coverImage{
+        if let coverImageProvider = self.blogData.coverImage{
            
             ZStack{
                 
@@ -24,6 +24,7 @@ extension BlogView{
                         Image(uiImage: img)
                             .resizable().aspectRatio(contentMode: .fill)
                             .fullWidth()
+                            .clipped()
                            
                     }
                    
@@ -40,12 +41,12 @@ extension BlogView{
                         .fade(duration: 0.25)
                         .aspectRatio(contentMode: .fill)
                         .fullWidth()
+                        .clipped()
                         
                        
                 }
             }
             .fullWidth(height: coverHeight + strachValue)
-         
             .blur(radius: 10 * ScrollPer)
             .opacity(coverOpacity)
             .overlay(VStack{
@@ -120,17 +121,91 @@ extension BlogView{
   
     
     @ViewBuilder
-    func TextContent(value : String,config : TextConfig) -> some View{
+    func TextContent(type : BlogCantentType) -> some View{
+        switch type {
+        case .title(let value, let config):
+            Text(value)
+                .underline(config.UnderLine)
+                .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
+                .foregroundColor(config.color)
+                .multilineTextAlignment(config.alignment)
+                .lineSpacing(textLineSpacing)
+                .fullWidth(alignment: .leading)
+                .opacity(config.opacity)
+        case .headline(let value, let config):
+            Text(value)
+                .underline(config.UnderLine)
+                .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
+                .foregroundColor(config.color)
+                .multilineTextAlignment(config.alignment)
+                .lineSpacing(textLineSpacing)
+                .fullWidth(alignment: .leading)
+                .opacity(config.opacity)
+        case .subheadline(let value, let config):
+            Text(value)
+                .underline(config.UnderLine)
+                .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
+                .foregroundColor(config.color)
+                .multilineTextAlignment(config.alignment)
+                .lineSpacing(textLineSpacing)
+                .fullWidth(alignment: .leading)
+                .opacity(config.opacity)
+        case .caption(let value, let config):
+            Text(value)
+                .underline(config.UnderLine)
+                .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
+                .foregroundColor(config.color)
+                .multilineTextAlignment(config.alignment)
+                .lineSpacing(textLineSpacing)
+                .fullWidth(alignment: .leading)
+                .opacity(config.opacity)
+        case .caption2(let value, let config):
+            Text(value)
+                .underline(config.UnderLine)
+                .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
+                .foregroundColor(config.color)
+                .multilineTextAlignment(config.alignment)
+                .lineSpacing(textLineSpacing)
+                .fullWidth(alignment: .leading)
+                .opacity(config.opacity)
+        case .customText(let value, let config):
+            Text(value)
+                .underline(config.UnderLine)
+                .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
+                .foregroundColor(config.color)
+                .multilineTextAlignment(config.alignment)
+                .lineSpacing(textLineSpacing)
+                .fullWidth(alignment: .leading)
+                .opacity(config.opacity)
+            
+        default :
+            Text("")
+                .opacity(0)
        
-        Text(value)
-            .underline(config.UnderLine)
-            .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
-            .foregroundColor(config.color)
-            .multilineTextAlignment(config.alignment)
-            .lineSpacing(textLineSpacing)
-            .fullWidth(alignment: .leading)
-            .opacity(config.opacity)
+        }
         
+        
+    }
+    
+    @ViewBuilder
+    func linkView(text : String,url : String) -> some View{
+        Group{
+            Text("\(text) ")
+                .fontWeight(.bold)
+                .foregroundColor(textColor)
+            +
+            
+            Text(url)
+                .foregroundColor(Color.blue)
+               
+        }
+        .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light)
+        .fullWidth(alignment: .leading)
+        .onTapGesture {
+            if let url = URL(string: url){
+                UIApplication.shared.open(url)
+            }
+        }
     }
     
     @ViewBuilder
@@ -146,7 +221,6 @@ extension BlogView{
                         +
                         
                         Text(value)
-                            
                             .foregroundColor(config.textColor ?? textColor)
                            
                     }

@@ -34,7 +34,7 @@ extension View
 
     
     // Hides the home indicator on devices running iOS 16.0 or later
-    func hideHomeIndicator() -> some View {
+    public func hideHomeIndicator() -> some View {
         if #available(iOS 16.0, *) {
             // Use the `persistentSystemOverlays` modifier with `.hidden` to hide the home indicator
             return self.persistentSystemOverlays(.hidden)
@@ -45,7 +45,7 @@ extension View
     }
     
     // Ignores the safe area insets of the device on iOS 14 and above
-    func ignoreSafeArea_C() -> some View {
+    public func ignoreSafeArea_C() -> some View {
         if #available(iOS 14.0, *) {
             return self.ignoresSafeArea()
         } else {
@@ -54,17 +54,17 @@ extension View
     }
     
     
-    func countinueRoundBackGround(CornerRadiue : CGFloat,color : Color) -> some View{
+    public  func countinueRoundBackGround(CornerRadiue : CGFloat,color : Color) -> some View{
         return self.background(RoundedRectangle(cornerRadius: CornerRadiue,style: .continuous).fill(color))
     }
     
-    func maskcountinueRound(CornerRadiue : CGFloat) -> some View {
+    public func maskcountinueRound(CornerRadiue : CGFloat) -> some View {
         return self.mask(RoundedRectangle(cornerRadius: CornerRadiue,style: .continuous).fill(Color.white))
     }
     
     
     // Adjusts the view's frame to account for the bottom safe area
-    func bottomSafeArea(width: CGFloat = 0, plus: CGFloat = 0, ifZero: CGFloat = 0) -> some View {
+    public  func bottomSafeArea(width: CGFloat = 0, plus: CGFloat = 0, ifZero: CGFloat = 0) -> some View {
         if UIDevice.current.bottomSafeArea == 0 {
             // If the bottom safe area size is 0, return the view with the adjusted height
             return self.frame(width: width, height: ifZero + plus, alignment: .center)
@@ -75,7 +75,7 @@ extension View
     }
     
     // Adjusts the view's frame to account for the notch size on the device
-    func adjustForNotch(width: CGFloat = 0, plus: CGFloat = 0) -> some View {
+    public func adjustForNotch(width: CGFloat = 0, plus: CGFloat = 0) -> some View {
         // Get the notch size from the current device
         let notchSize = UIDevice.current.notchSize
         
@@ -85,7 +85,7 @@ extension View
    
    
     // Returns a view that occupies the full available frame with the specified alignment
-    func fullFrame(alignment: Alignment = .center) -> some View {
+    public func fullFrame(alignment: Alignment = .center) -> some View {
         return self.frame(
             minWidth: 0,
             idealWidth: 100,
@@ -99,12 +99,12 @@ extension View
     
     
     // Returns a square view with the specified size and centered alignment
-    func squareFrame(size: CGFloat,alignment: Alignment = .center) -> some View {
+    public func squareFrame(size: CGFloat,alignment: Alignment = .center) -> some View {
         return self.frame(width: size, height: size, alignment: alignment)
     }
     
     // Returns a view that occupies the full available width with the specified alignment
-    func fullWidth(height : CGFloat? = nil,alignment: Alignment = .center) -> some View {
+    public func fullWidth(height : CGFloat? = nil,alignment: Alignment = .center) -> some View {
         if let height = height{
             return self.frame(
                 minWidth: 0,
@@ -127,7 +127,7 @@ extension View
     }
     
     // Returns a view that occupies the full available height with the specified width and alignment
-    func fullHeight(width: CGFloat = 0, alignment: Alignment = .center) -> some View {
+    public func fullHeight(width: CGFloat = 0, alignment: Alignment = .center) -> some View {
         return self.frame(
             minWidth: width,
             idealWidth: width,
@@ -141,25 +141,25 @@ extension View
 
     
     // Returns the corner radius of the device's display, capped at the specified minimum value
-    func deviceCornerRadius(minimum: CGFloat = 0) -> CGFloat {
+    public func deviceCornerRadius(minimum: CGFloat = 0) -> CGFloat {
         // Retrieve the display corner radius from the main screen
         return UIScreen.main.displayCorner(minimum: minimum)
     }
     
     
     // Clips the view to a rounded corner shape with the specified radius and corners
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+    public  func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
     
     //scroll position Detection
-    func getScrollPosition(key : String,handler : @escaping (CGFloat) -> Void) -> some View {
+    public func getScrollPosition(key : String,handler : @escaping (CGFloat) -> Void) -> some View {
         return self.background( GeometryReader { Color.clear.preference(key: ViewOffsetKey.self, value: -$0.frame(in: .named(key)).origin.y) }).onPreferenceChange(ViewOffsetKey.self) { handler($0) }
     }
     
     
 
-    func setFont(name : String?,size : CGFloat,weight : Font.Weight,isSmallCaps : Bool = false) -> some View{
+    public func setFont(name : String?,size : CGFloat,weight : Font.Weight,isSmallCaps : Bool = false) -> some View{
         var font : Font = .system(size: size,weight: weight)
         if let name = name {
             font = Font.custom(name, size: size)
@@ -168,7 +168,7 @@ extension View
     }
 
     //direct systmeicon image view
-    func systemIcon(_ name : String) -> some View{
+    public func systemIcon(_ name : String) -> some View{
         return Image(systemName: name).resizeWithApectRatio()
     }
     
@@ -186,7 +186,7 @@ struct ViewOffsetKey: PreferenceKey {
 
 extension UIDevice {
     /// Returns `true` if the device has a notch
-    var hasNotch: Bool {
+    public var hasNotch: Bool {
         guard #available(iOS 11.0, *), let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else { return false }
         if UIDevice.current.orientation.isPortrait {
             return window.safeAreaInsets.top >= 44
@@ -196,19 +196,19 @@ extension UIDevice {
     }
     
     /// Returns the height of the notch area, or 0 if not applicable
-    var notchSize: CGFloat {
+    public var notchSize: CGFloat {
         guard #available(iOS 11.0, *), let window =  UIApplication.shared.windows.filter({$0.isKeyWindow}).first   else { return 0 }
         return window.safeAreaInsets.top
     }
     
     /// Returns the height of the bottom safe area, or 0 if not applicable
-    var bottomSafeArea: CGFloat {
+    public var bottomSafeArea: CGFloat {
         guard #available(iOS 11.0, *), let window =  UIApplication.shared.windows.filter({$0.isKeyWindow}).first  else { return 0 }
         return window.safeAreaInsets.bottom
     }
     
     /// Returns `true` if the device is an iPad
-    var isPad: Bool {
+    public var isPad: Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
 }
@@ -242,27 +242,27 @@ extension UIScreen {
 }
 
 
-extension String {
-    public enum TextBlogContents {
-        case title,headline,subheadline,caption,caption2
-    }
-    
-    public func toBlogContent(type : TextBlogContents,config : TextConfig? = nil) -> BlogCantent {
-        switch type {
-        case .title:
-            return .init(ContentType: .title(value: self,config: config ?? .init(size: 26, fontWeight: .heavy)))
-        case .headline:
-            return .init(ContentType: .headline(value: self,config: config ?? .init(size: 21, fontWeight: .bold)))
-        case .subheadline:
-            return .init(ContentType: .subheadline(value: self,config: config ?? .init(size: 18, fontWeight: .regular)))
-        case .caption:
-            return .init(ContentType: .caption(value: self,config: config ?? .init(size: 16, fontWeight: .light)))
-        case .caption2:
-            return .init(ContentType: .caption2(value: self,config: config ?? .init(size: 14, fontWeight: .light)))
-       
-        }
-    }
-}
+//extension String {
+//    public enum TextBlogContents {
+//        case title,headline,subheadline,caption,caption2
+//    }
+//    
+//    public func toBlogContent(type : TextBlogContents,config : TextConfig? = nil) -> BlogCantent {
+//        switch type {
+//        case .title:
+//            return .init(ContentType: .title(value: self,config: config ?? .init(size: 26, fontWeight: .heavy)))
+//        case .headline:
+//            return .init(ContentType: .headline(value: self,config: config ?? .init(size: 21, fontWeight: .bold)))
+//        case .subheadline:
+//            return .init(ContentType: .subheadline(value: self,config: config ?? .init(size: 18, fontWeight: .regular)))
+//        case .caption:
+//            return .init(ContentType: .caption(value: self,config: config ?? .init(size: 16, fontWeight: .light)))
+//        case .caption2:
+//            return .init(ContentType: .caption2(value: self,config: config ?? .init(size: 14, fontWeight: .light)))
+//       
+//        }
+//    }
+//}
 
 extension UIImage {
     public func toBlogContent(config : ImageConfig = .init()) -> BlogCantent {
