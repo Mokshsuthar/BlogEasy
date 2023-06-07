@@ -4,10 +4,14 @@ platform :ios, '14.0'
 
 target 'BlogEasy_Example' do
   pod 'BlogEasy', :path => '../'
-
+  pod 'Firebase'
+  pod 'FirebaseFirestore'
+  
+  
+  
   target 'BlogEasy_Tests' do
     inherit! :search_paths
-
     
   end
 end
+

@@ -113,8 +113,6 @@ public struct BlogView: View {
                             ImageView(provider: provider, config: config)
                         case .bullet(let value,let config):
                             BulletPoint(value: value, config: config)
-                        case .CodeBlock(let value):
-                            Text(value)
                         case .divider:
                             Divider()
                         case .codeView(let value):

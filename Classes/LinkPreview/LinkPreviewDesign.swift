@@ -187,4 +187,15 @@ public enum LinkPreviewType {
     case small
     case large
     case auto
+    
+    func rawValue() -> String {
+        switch self {
+        case .small:
+            return "small"
+        case .large:
+            return "large"
+        case .auto:
+            return "auto"
+        }
+    }
 }

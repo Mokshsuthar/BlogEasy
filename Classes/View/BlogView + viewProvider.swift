@@ -19,8 +19,8 @@ extension BlogView{
             ZStack{
                 
                 switch coverImageProvider {
-                case .uiimage(let image):
-                    if let img = image{
+                case .uiimage(let name):
+                    if let img = UIImage(named: name){
                         Image(uiImage: img)
                             .resizable().aspectRatio(contentMode: .fill)
                             .fullWidth()
@@ -66,12 +66,12 @@ extension BlogView{
     func ImageView(provider : imageProvider,config : ImageConfig) -> some View {
         VStack(spacing : 5){
             switch provider {
-            case .uiimage(let image):
-                if let img = image{
+            case .uiimage(let name):
+                if let img = UIImage(named: name){
                     Image(uiImage: img)
                         .resizable().aspectRatio(contentMode: config.aspectMode)
                         .fullWidth()
-                        .background(config.backgroundColor)
+                        .background(config.backgroundColor.getColor())
                         .cornerRadius(config.cornerRadius)
                         .shadow(color: Color.black.opacity(config.showShadow ? 0.4 : 0), radius: 8, x: 0, y: 0)
                 }
@@ -87,7 +87,7 @@ extension BlogView{
                     .fade(duration: 0.25)
                     .aspectRatio(contentMode: .fit)
                     .fullWidth()
-                    .background(config.backgroundColor)
+                    .background(config.backgroundColor.getColor())
                     .cornerRadius(config.cornerRadius)
                     .shadow(color: Color.black.opacity(config.showShadow ? 0.4 : 0), radius: 8, x: 0, y: 0)
             }
@@ -127,7 +127,7 @@ extension BlogView{
             Text(value)
                 .underline(config.UnderLine)
                 .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
+                .foregroundColor(config.color.getColor())
                 .multilineTextAlignment(config.alignment)
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
@@ -136,7 +136,7 @@ extension BlogView{
             Text(value)
                 .underline(config.UnderLine)
                 .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
+                .foregroundColor(config.color.getColor())
                 .multilineTextAlignment(config.alignment)
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
@@ -145,7 +145,7 @@ extension BlogView{
             Text(value)
                 .underline(config.UnderLine)
                 .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
+                .foregroundColor(config.color.getColor())
                 .multilineTextAlignment(config.alignment)
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
@@ -154,7 +154,7 @@ extension BlogView{
             Text(value)
                 .underline(config.UnderLine)
                 .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
+                .foregroundColor(config.color.getColor())
                 .multilineTextAlignment(config.alignment)
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
@@ -163,7 +163,7 @@ extension BlogView{
             Text(value)
                 .underline(config.UnderLine)
                 .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
+                .foregroundColor(config.color.getColor())
                 .multilineTextAlignment(config.alignment)
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
@@ -172,7 +172,7 @@ extension BlogView{
             Text(value)
                 .underline(config.UnderLine)
                 .setFont(name: fontName, size: config.size + fontsizeScaler,weight: config.fontWeight,isSmallCaps: config.smallCaps)
-                .foregroundColor(config.color)
+                .foregroundColor(config.color.getColor())
                 .multilineTextAlignment(config.alignment)
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
@@ -217,11 +217,11 @@ extension BlogView{
                     Group{
                         Text("\(BulletTextvalue) ")
                             .fontWeight(.bold)
-                            .foregroundColor(color ?? textColor)
+                            .foregroundColor(color?.getColor() ?? textColor)
                         +
                         
                         Text(value)
-                            .foregroundColor(config.textColor ?? textColor)
+                            .foregroundColor(config.textColor?.getColor() ?? textColor)
                            
                     }
                     .setFont(name: fontName, size: config.fontSize, weight: config.fontWeight)
@@ -229,25 +229,25 @@ extension BlogView{
                 }else {
                     Text(BulletTextvalue)
                         .setFont(name: fontName, size: config.fontSize, weight: .bold)
-                        .foregroundColor(color ?? textColor)
+                        .foregroundColor(color?.getColor() ?? textColor)
                     
                     Text(value)
                         .setFont(name: fontName, size: config.fontSize, weight: config.fontWeight)
-                        .foregroundColor(config.textColor ?? textColor)
+                        .foregroundColor(config.textColor?.getColor() ?? textColor)
                         .fullWidth(alignment: .leading)
                 }
                 
                 
             case .systemImage(let name,let color):
                 systemIcon(name)
-                    .foregroundColor(color ?? accentColor)
+                    .foregroundColor(color?.getColor() ?? accentColor)
                     .padding(3)
                     .squareFrame(size: config.fontSize)
                     .padding(.top,2)
                 
                 Text(value)
                     .setFont(name: fontName, size: config.fontSize, weight: config.fontWeight)
-                    .foregroundColor(config.textColor ?? textColor)
+                    .foregroundColor(config.textColor?.getColor() ?? textColor)
                     .fullWidth(alignment: .leading)
             }
             

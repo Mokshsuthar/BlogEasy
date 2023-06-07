@@ -264,11 +264,7 @@ extension UIScreen {
 //    }
 //}
 
-extension UIImage {
-    public func toBlogContent(config : ImageConfig = .init()) -> BlogCantent {
-        return.init(ContentType: .image(image: .uiimage(image: self),config: config))
-    }
-}
+
 
 extension URL {
     public func toBlogContent_Image(config : ImageConfig = .init()) -> BlogCantent {
@@ -285,5 +281,24 @@ extension Image {
     //imageResize and aspect ratio
     func resizeWithApectRatio(contentMode : ContentMode = .fit) -> some View {
         return self.resizable().aspectRatio( contentMode: contentMode)
+    }
+}
+
+extension UIColor {
+    func toHexCode() -> String? {
+        guard let components = self.cgColor.components else {
+            return nil
+        }
+        
+        let red = Float(components[0])
+        let green = Float(components[1])
+        let blue = Float(components[2])
+        
+        let hexCode = String(format: "#%02lX%02lX%02lX",
+                             lroundf(red * 255),
+                             lroundf(green * 255),
+                             lroundf(blue * 255))
+        
+        return hexCode
     }
 }

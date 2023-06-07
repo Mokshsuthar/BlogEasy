@@ -74,7 +74,8 @@ struct BlogExampleListView: View {
                     .fullWidth(height: 90)
                     .cornerRadius(20)
                     .onTapGesture {
-                        self.model.OpenBlog = model.porcheBlog
+//                        self.model.OpenBlog = model.porcheBlog
+                        self.model.getDictOfPorcheBlog()
                     }
                     
 //                    ForEach((0...10).indices,id: \.self) { i in
