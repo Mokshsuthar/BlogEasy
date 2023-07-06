@@ -78,6 +78,14 @@ struct BlogExampleListView: View {
                         self.model.getDictOfPorcheBlog()
                     }
                     
+                    
+                    Button {
+                        self.model.openOnlineBlog()
+                    } label: {
+                        Text("open Online Blog")
+                    }
+
+                    
 //                    ForEach((0...10).indices,id: \.self) { i in
 //                        Rectangle()
 //                            .fill(Color.white.opacity(0.3))

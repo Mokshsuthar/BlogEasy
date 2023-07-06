@@ -38,6 +38,7 @@ class BlogExampleListVC: UIViewController,ObservableObject {
         childView.view.backgroundColor = UIColor.black
         
         OpenBlog = porcheBlog
+        
     }
     
     //BlogsData
@@ -156,8 +157,17 @@ class BlogExampleListVC: UIViewController,ObservableObject {
        
     }
     
+    
+    func openOnlineBlog(){
+        FirebaseManager.shared.getBlog() { blog in
+            self.OpenBlog = blog
+        }
+    }
+    
     func getDictOfPorcheBlog() {
         let Dict = porcheBlog.getDict()
+        
+//        let blogData = BlogData(Dict)
         FirebaseManager.shared.uploadBlog(data: Dict)
     }
 }

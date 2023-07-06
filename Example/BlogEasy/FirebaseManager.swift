@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseCore
+import BlogEasy
 
 class FirebaseManager {
     static var shared = FirebaseManager()
@@ -16,5 +17,18 @@ class FirebaseManager {
     
     func uploadBlog(data : [String : Any]){
         firebaseRef.document("Blog1").setData(data)
+    }
+    
+    func getBlog(handler : @escaping (BlogData) -> Void) {
+        firebaseRef.document("Blog1").getDocument { snapShot, error in
+            if let snapShot {
+                if let data = snapShot.data(){
+                    print(data)
+                    
+                    let blog = BlogData(data)
+                    handler(blog)
+                }
+            }
+        }
     }
 }

@@ -20,10 +20,17 @@ public struct BlogData : Identifiable {
         
     }
     
+    public init(_ dict : [String : Any]) {
+        self.coverImage = dict.getImageProvider("coverImage")
+        self.content = dict.getBlogContent("content")
+    }
+    
+    
     public func getDict() -> [String : Any] {
         var dataToReturn : [String : Any] = [:]
         
         dataToReturn["title"] = "title"
+        
         if let coverImage {
             dataToReturn["coverImage"] = coverImage.getDict()
         }
@@ -59,7 +66,7 @@ public enum BlogCantentType {
     case subheadline(value : String,config : SubheadlineTextConfig = SubheadlineTextConfig())
     case caption(value :String,config : captionTextConfig = captionTextConfig())
     case caption2(value : String,config : caption2TextConfig = caption2TextConfig())
-    case customText(value : String,config : CoustomTextConfig)
+    case customText(value : String,config : CustomTextConfig)
     case image(image : imageProvider,config : ImageConfig = .init())
     case bullet(value : String,config : BulletPointConfig = .init())
     case divider
@@ -111,8 +118,7 @@ extension BlogCantentType {
             dicValue["type"] = "image"
             dicValue["value"] = image.getDict()
             dicValue["config"] = config.dict()
-          
-            
+        
         case .bullet(let value, let config):
             dicValue["type"] = "bullet"
             dicValue["value"] = value
@@ -135,7 +141,6 @@ extension BlogCantentType {
             dicValue["type"] = "linkPreview"
             dicValue["viewType"] = type.rawValue()
             dicValue["url"] = url
-            
         }
 
         return dicValue
@@ -143,6 +148,7 @@ extension BlogCantentType {
 }
 
 public enum colorProvider {
+    case defaultColor(_ alpha : Double = 1)
     case color(_ color : Color,_ alpha : Double = 1)
     case uicolor(_ color : UIColor,_ alpha : Double = 1)
     case name(_ name : String,_ alpha : Double = 1)
@@ -158,6 +164,8 @@ public enum colorProvider {
             return Color(name).opacity(alpha)
         case .hex(let hex, let alpha):
             return Color(hex: hex,alpha: alpha)
+        case .defaultColor(let alpha):
+            return Color(UIColor(light: .black, dark: .white).withAlphaComponent(alpha))
         }
     }
     
@@ -180,28 +188,26 @@ public enum colorProvider {
             colorDict["providerType"] = "hexCode"
             colorDict["value"] = hexCode
             colorDict["alpha"] = alpha
+        case .defaultColor(let alpha):
+            colorDict["providerType"] = "defaultColor"
+            colorDict["alpha"] = alpha
         }
         return colorDict
     }
 }
-
-
-
 //title Config
 public struct TitleTextConfig {
     var size : CGFloat = 26
     var fontWeight : Font.Weight = .heavy
-    var color : colorProvider =  .color(.systemTextColor)
+    var color : colorProvider =  .defaultColor()
     var UnderLine : Bool = false
     var smallCaps : Bool = false
     var opacity : CGFloat = 1
     var alignment : TextAlignment = .leading
     
-    public init(){
-        
-    }
+    public init(){ }
     
-    public init(size: CGFloat = 26, fontWeight: Font.Weight = .heavy, color: colorProvider = .color(.systemTextColor), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 1, alignment: TextAlignment = .leading) {
+    public init(size: CGFloat = 26, fontWeight: Font.Weight = .heavy, color: colorProvider = .defaultColor(), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 1, alignment: TextAlignment = .leading) {
         self.size = size
         self.fontWeight = fontWeight
         self.color = color
@@ -210,6 +216,17 @@ public struct TitleTextConfig {
         self.opacity = opacity
         self.alignment = alignment
     }
+    
+    public init(_ dict : [String : Any]) {
+        self.size = dict.getCGFloat("size",26)
+        self.fontWeight =  dict.getFontWeight("fontWeight",.heavy)
+        self.color = dict.getColor("color",.color(.systemTextColor))
+        self.UnderLine = dict.getBool("UnderLine",false)
+        self.smallCaps = dict.getBool("smallCaps",false)
+        self.opacity = dict.getCGFloat("opacity",1)
+        self.alignment = dict.getFontAlignment("alignment",.leading)
+    }
+    
     
     func dict() -> [String : Any] {
         var configDict : [String : Any] = [:]
@@ -226,21 +243,19 @@ public struct TitleTextConfig {
     }
     
 }
-
+//Headline Config
 public struct HeadlineTextConfig {
     var size : CGFloat = 21
     var fontWeight : Font.Weight = .bold
-    var color : colorProvider =  .color(.systemTextColor)
+    var color : colorProvider =  .defaultColor()
     var UnderLine : Bool = false
     var smallCaps : Bool = false
     var opacity : CGFloat = 1
     var alignment : TextAlignment = .leading
     
-    public init(){
-        
-    }
+    public init(){ }
     
-    public init(size: CGFloat = 21, fontWeight: Font.Weight = .bold, color: colorProvider = .color(.systemTextColor), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 1, alignment: TextAlignment = .leading) {
+    public init(size: CGFloat = 21, fontWeight: Font.Weight = .bold, color: colorProvider = .defaultColor(), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 1, alignment: TextAlignment = .leading) {
         self.size = size
         self.fontWeight = fontWeight
         self.color = color
@@ -248,6 +263,16 @@ public struct HeadlineTextConfig {
         self.smallCaps = smallCaps
         self.opacity = opacity
         self.alignment = alignment
+    }
+    
+    public init(_ dict : [String : Any]) {
+        self.size = dict.getCGFloat("size",21)
+        self.fontWeight =  dict.getFontWeight("fontWeight",.bold)
+        self.color = dict.getColor("color",.color(.systemTextColor))
+        self.UnderLine = dict.getBool("UnderLine",false)
+        self.smallCaps = dict.getBool("smallCaps",false)
+        self.opacity = dict.getCGFloat("opacity",1)
+        self.alignment = dict.getFontAlignment("alignment",.leading)
     }
     
     func dict() -> [String : Any] {
@@ -265,21 +290,19 @@ public struct HeadlineTextConfig {
     }
     
 }
-
+//Subheadline Config
 public struct SubheadlineTextConfig {
     var size : CGFloat = 18
     var fontWeight : Font.Weight = .regular
-    var color : colorProvider =  .color(.systemTextColor)
+    var color : colorProvider =  .defaultColor()
     var UnderLine : Bool = false
     var smallCaps : Bool = false
     var opacity : CGFloat = 1
     var alignment : TextAlignment = .leading
     
-    public init(){
-        
-    }
+    public init(){ }
     
-    public init(size: CGFloat = 18, fontWeight: Font.Weight = .regular, color: colorProvider = .color(.systemTextColor), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 1, alignment: TextAlignment = .leading) {
+    public init(size: CGFloat = 18, fontWeight: Font.Weight = .regular, color: colorProvider = .defaultColor(), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 1, alignment: TextAlignment = .leading) {
         self.size = size
         self.fontWeight = fontWeight
         self.color = color
@@ -287,6 +310,16 @@ public struct SubheadlineTextConfig {
         self.smallCaps = smallCaps
         self.opacity = opacity
         self.alignment = alignment
+    }
+    
+    public init(_ dict : [String : Any]) {
+        self.size = dict.getCGFloat("size",18)
+        self.fontWeight =  dict.getFontWeight("fontWeight",.regular)
+        self.color = dict.getColor("color",.color(.systemTextColor))
+        self.UnderLine = dict.getBool("UnderLine",false)
+        self.smallCaps = dict.getBool("smallCaps",false)
+        self.opacity = dict.getCGFloat("opacity",1)
+        self.alignment = dict.getFontAlignment("alignment",.leading)
     }
     
     func dict() -> [String : Any] {
@@ -303,11 +336,11 @@ public struct SubheadlineTextConfig {
         return configDict
     }
 }
-
+//caption Config
 public struct captionTextConfig {
     var size : CGFloat = 16
     var fontWeight : Font.Weight = .light
-    var color : colorProvider =  .color(.systemTextColor)
+    var color : colorProvider =  .defaultColor()
     var UnderLine : Bool = false
     var smallCaps : Bool = false
     var opacity : CGFloat = 0.8
@@ -317,7 +350,7 @@ public struct captionTextConfig {
         
     }
     
-    public init(size: CGFloat = 16, fontWeight: Font.Weight = .light, color: colorProvider = .color(.systemTextColor), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 0.8, alignment: TextAlignment = .leading) {
+    public init(size: CGFloat = 16, fontWeight: Font.Weight = .light, color: colorProvider = .defaultColor(), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 0.8, alignment: TextAlignment = .leading) {
         self.size = size
         self.fontWeight = fontWeight
         self.color = color
@@ -325,6 +358,16 @@ public struct captionTextConfig {
         self.smallCaps = smallCaps
         self.opacity = opacity
         self.alignment = alignment
+    }
+    
+    public init(_ dict : [String : Any]) {
+        self.size = dict.getCGFloat("size",16)
+        self.fontWeight =  dict.getFontWeight("fontWeight",.light)
+        self.color = dict.getColor("color",.color(.systemTextColor))
+        self.UnderLine = dict.getBool("UnderLine",false)
+        self.smallCaps = dict.getBool("smallCaps",false)
+        self.opacity = dict.getCGFloat("opacity",0.8)
+        self.alignment = dict.getFontAlignment("alignment",.leading)
     }
     
     func dict() -> [String : Any] {
@@ -341,11 +384,11 @@ public struct captionTextConfig {
         return configDict
     }
 }
-
+//caption2 Config
 public struct caption2TextConfig {
     var size : CGFloat = 14
     var fontWeight : Font.Weight = .light
-    var color : colorProvider =  .color(.systemTextColor)
+    var color : colorProvider = .defaultColor()
     var UnderLine : Bool = false
     var smallCaps : Bool = false
     var opacity : CGFloat = 0.8
@@ -355,7 +398,7 @@ public struct caption2TextConfig {
         
     }
     
-    public init(size: CGFloat = 14, fontWeight: Font.Weight = .light, color : colorProvider =  .color(.systemTextColor), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 0.8, alignment: TextAlignment = .leading) {
+    public init(size: CGFloat = 14, fontWeight: Font.Weight = .light, color : colorProvider =  .defaultColor(), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 0.8, alignment: TextAlignment = .leading) {
         self.size = size
         self.fontWeight = fontWeight
         self.color = color
@@ -363,6 +406,16 @@ public struct caption2TextConfig {
         self.smallCaps = smallCaps
         self.opacity = opacity
         self.alignment = alignment
+    }
+    
+    public init(_ dict : [String : Any]) {
+        self.size = dict.getCGFloat("size",14)
+        self.fontWeight =  dict.getFontWeight("fontWeight",.light)
+        self.color = dict.getColor("color",.color(.systemTextColor))
+        self.UnderLine = dict.getBool("UnderLine",false)
+        self.smallCaps = dict.getBool("smallCaps",false)
+        self.opacity = dict.getCGFloat("opacity",0.8)
+        self.alignment = dict.getFontAlignment("alignment",.leading)
     }
     
     func dict() -> [String : Any] {
@@ -379,9 +432,8 @@ public struct caption2TextConfig {
         return configDict
     }
 }
-
-
-public struct CoustomTextConfig {
+//custom Text Config
+public struct CustomTextConfig {
     var size : CGFloat
     var fontWeight : Font.Weight
     var color : colorProvider =  .color(.systemTextColor)
@@ -401,6 +453,15 @@ public struct CoustomTextConfig {
         self.alignment = alignment
     }
     
+    public init(_ dict : [String : Any]) {
+        self.size = dict.getCGFloat("size",14)
+        self.fontWeight =  dict.getFontWeight("fontWeight",.light)
+        self.color = dict.getColor("color",.color(.systemTextColor))
+        self.UnderLine = dict.getBool("UnderLine",false)
+        self.smallCaps = dict.getBool("smallCaps",false)
+        self.opacity = dict.getCGFloat("opacity",1)
+        self.alignment = dict.getFontAlignment("alignment",.leading)
+    }
    
     func dict() -> [String : Any] {
         var configDict : [String : Any] = [:]
@@ -433,6 +494,14 @@ public struct ImageConfig {
         self.source = source
     }
     
+    public init(_ dict : [String : Any]) {
+        self.cornerRadius = dict.getCGFloat("cornerRadius",20)
+        self.showShadow = dict.getBool("showShadow",false)
+        self.aspectMode = dict.getAspectMode("aspectMode",.fit)
+        self.backgroundColor = dict.getColor("backgroundColor",.color(.clear))
+        self.source = dict.getImageSource("source")
+    }
+    
     func dict() -> [String : Any] {
         var config : [String : Any] = [:]
         config["cornerRadius"] = cornerRadius
@@ -451,18 +520,6 @@ public struct ImageConfig {
     
 }
 
-extension ContentMode {
-    func rawValue() -> String {
-        switch self {
-        case .fit:
-            return "fit"
-        case .fill:
-            return "fill"
-        }
-    }
-}
-
-
 public struct BulletPointConfig{
     var bulletType : BulletPointType
     var fontSize : CGFloat
@@ -480,6 +537,20 @@ public struct BulletPointConfig{
         self.UnderLine = UnderLine
         self.smallCaps = smallCaps
         self.opacity = opacity
+    }
+    
+    public init(_ dict : [String : Any]) {
+        self.bulletType = dict.getBulletPointType()
+        self.fontSize = dict.getCGFloat("fontSize",16)
+        self.fontWeight = dict.getFontWeight("fontWeight",.light)
+        if let colorP = dict["textColor"] as? [String : Any] {
+            self.textColor = dict.getColor("textColor")
+        } else {
+            self.textColor = nil
+        }
+        self.UnderLine = dict.getBool("UnderLine")
+        self.smallCaps = dict.getBool("smallCaps")
+        self.opacity = dict.getCGFloat("opacity")
     }
     
     func getDict() -> [String : Any]{
@@ -525,6 +596,8 @@ public enum BulletPointType {
         }
         return configDict
     }
+    
+    
 }
 
 public enum imageProvider {

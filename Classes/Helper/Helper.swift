@@ -173,6 +173,25 @@ extension View
     }
     
     
+    public func forgroundColor(_ colorProvider : colorProvider?, defaultColor : Color) -> some View{
+        if let colorProvider {
+            switch colorProvider {
+            case .defaultColor(let alpha):
+                return  self.foregroundColor(defaultColor.opacity(alpha))
+            case .color(let color, let alpha):
+                return  self.foregroundColor(color.opacity(alpha))
+            case .uicolor(let uicolor, let alpha):
+                return  self.foregroundColor(Color(uicolor).opacity(alpha))
+            case .name(let name, let alpha):
+                return  self.foregroundColor(Color(name).opacity(alpha))
+            case .hex(let code, let alpha):
+                return  self.foregroundColor(Color(hex: code).opacity(alpha))
+            }
+        } else {
+            return self.foregroundColor(defaultColor)
+        }
+    }
+    
 }
 
 struct ViewOffsetKey: PreferenceKey {
