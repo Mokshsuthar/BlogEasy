@@ -12,14 +12,23 @@ import BlogEasy
 struct BlogOpenView: View {
     @Environment(\.presentationMode) var presentationMode
     let data : BlogData
+    let coverHight : CGFloat?
+    
+    init(data: BlogData) {
+        self.data = data
+        self.coverHight = 600
+    }
     
     var body: some View {
         BlogView(data: data)
         .showScrollIndictor(false)
         .textLineSpacing(2)
+        .coverHeight(coverHight)
+        .coverScrollOpacity(0)
         .onBackPress {
             presentationMode.wrappedValue.dismiss()
         }
+//        .preferredColorScheme(.light)
     }
 }
 

@@ -26,10 +26,35 @@ extension BlogView : Buildable {
         mutating(keyPath: \.textLineSpacing, value: value)
     }
     
+    /**
+     Hides the cover gradient of the view.
+    */
+    public func hideCoverGradient() -> Self {
+        mutating(keyPath: \.showCoverGradient, value: false)
+    }
+    
+    /**
+     Hides the cover gradient of the view.
+    */
+    public func coverHeight(_ value: CGFloat?) -> Self {
+        mutating(keyPath: \.coverHeight, value: value ?? self.coverHeight)
+    }
+    
     ///Registers a callback closure to be executed when the back button is pressed.
     public func onBackPress(_ callback: (() -> Void)?) -> Self {
         mutating(keyPath: \.backButtonAction, value: callback)
     }
+    
+    ///Registers a callback closure to be executed when the back button is pressed.
+    public func coverScrollOpacity(_ value: CGFloat) -> Self {
+        mutating(keyPath: \.coverScrollOpacity, value: value)
+    }
+    
+    ///Registers a callback closure to be executed when the back button is pressed.
+    public func paddingHorizontal(_ value: CGFloat) -> Self {
+        mutating(keyPath: \.paddingHorizontal, value: value)
+    }
+    
     
 //    public func RightTopButton(@ViewBuilder content: () -> View) -> Self{
 //        mutating(keyPath: \.backButtonView, value: content)

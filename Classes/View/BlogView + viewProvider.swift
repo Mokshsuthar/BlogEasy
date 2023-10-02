@@ -51,9 +51,11 @@ extension BlogView{
             .opacity(coverOpacity)
             .overlay(VStack{
                 Spacer()
+                if self.showCoverGradient {
+                    LinearGradient(colors: [blogData.backgroudColor?.getColor().opacity(0) ?? backgroundColor.opacity(0),blogData.backgroudColor?.getColor() ?? backgroundColor], startPoint: .top, endPoint: .bottom)
+                    .fullWidth(height: 100)
+                }
                 
-                LinearGradient(colors: [backgroundColor.opacity(0),backgroundColor], startPoint: .top, endPoint: .bottom)
-                .fullWidth(height: 100)
             })
             .clipped()
             .scaleEffect(1 + (0.5 * ScrollPer) )
@@ -74,6 +76,7 @@ extension BlogView{
                         .background(config.backgroundColor.getColor())
                         .cornerRadius(config.cornerRadius)
                         .shadow(color: Color.black.opacity(config.showShadow ? 0.4 : 0), radius: 8, x: 0, y: 0)
+                        .padding(.horizontal,config.isHorizontalPadding ? paddingHorizontal : 0)
                 }
                 
                 
@@ -90,6 +93,7 @@ extension BlogView{
                     .background(config.backgroundColor.getColor())
                     .cornerRadius(config.cornerRadius)
                     .shadow(color: Color.black.opacity(config.showShadow ? 0.4 : 0), radius: 8, x: 0, y: 0)
+                    .padding(.horizontal,config.isHorizontalPadding ? paddingHorizontal : 0)
             }
             //source of image if Added
             if let source = config.source {
@@ -112,6 +116,7 @@ extension BlogView{
                 .fullWidth(alignment: .leading)
                 .font(.caption)
                 .opacity(0.5)
+                .padding(.horizontal,paddingHorizontal)
                 
             }
            
@@ -132,6 +137,7 @@ extension BlogView{
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
                 .opacity(config.opacity)
+                .padding(.horizontal,paddingHorizontal)
         case .headline(let value, let config):
             Text(value)
                 .underline(config.UnderLine)
@@ -141,6 +147,7 @@ extension BlogView{
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
                 .opacity(config.opacity)
+                .padding(.horizontal,paddingHorizontal)
         case .subheadline(let value, let config):
             Text(value)
                 .underline(config.UnderLine)
@@ -150,6 +157,7 @@ extension BlogView{
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
                 .opacity(config.opacity)
+                .padding(.horizontal,paddingHorizontal)
         case .caption(let value, let config):
             Text(value)
                 .underline(config.UnderLine)
@@ -159,6 +167,7 @@ extension BlogView{
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
                 .opacity(config.opacity)
+                .padding(.horizontal,paddingHorizontal)
         case .caption2(let value, let config):
             Text(value)
                 .underline(config.UnderLine)
@@ -168,6 +177,7 @@ extension BlogView{
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
                 .opacity(config.opacity)
+                .padding(.horizontal,paddingHorizontal)
         case .customText(let value, let config):
             Text(value)
                 .underline(config.UnderLine)
@@ -177,6 +187,7 @@ extension BlogView{
                 .lineSpacing(textLineSpacing)
                 .fullWidth(alignment: .leading)
                 .opacity(config.opacity)
+                .padding(.horizontal,paddingHorizontal)
             
         default :
             Text("")
@@ -201,6 +212,7 @@ extension BlogView{
         }
         .setFont(name: fontName, size: 14 + fontsizeScaler,weight: .light)
         .fullWidth(alignment: .leading)
+        .padding(.horizontal,paddingHorizontal)
         .onTapGesture {
             if let url = URL(string: url){
                 UIApplication.shared.open(url)
@@ -253,5 +265,6 @@ extension BlogView{
             
             
         }
+        .padding(.horizontal,paddingHorizontal)
     }
 }

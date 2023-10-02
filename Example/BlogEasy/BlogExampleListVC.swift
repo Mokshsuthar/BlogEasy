@@ -102,9 +102,37 @@ class BlogExampleListVC: UIViewController,ObservableObject {
         .linkPreview(type: .large,url: "https://github.com/Mokshsuthar/BlogEasy"),
         .caption(value: "By incorporating these elements from the BlogEasy framework, you can create blog views that are visually appealing, highly customizable, and user-friendly. Whether you're building a personal blog, a news app, or any other iOS application requiring blog-related features, BlogEasy simplifies the process.")
         ])
+
+   //watch blog
+    var watchBlog : BlogData = BlogData(coverImage: .url(url: "https://i.pinimg.com/564x/30/e2/17/30e2174c0ae2a4295754ab23e9a36f37.jpg"),backgroudColor : .color(Color(hex: "F7F7F7", alpha: 1)), content: [
+        .title(value: "Introducing the \"Chronosense\": The Epitome of Timeless Elegance in the \"TEN:TEN\" Watch Collection",config: .init(color: .hex("2F3035"))),
+        .caption(value: "Welcome, watch enthusiasts, to the world of \"TEN:TEN\" where sophistication and craftsmanship intertwine flawlessly. In this blog post, we are thrilled to unveil the third masterpiece of this exclusive collection: the \"Chronosense.\" Prepare to be captivated by its minimalist design, premium materials, and its ability to effortlessly elevate any ensemble. Join us as we delve into the intricacies of this timepiece and discover why it's the epitome of timeless elegance.", config: .init(color : .hex("2F3035"))),
+        .headline(value: "Sleek Minimalism:",config: .init(color: .color(.red))),
+        .caption(value: "The \"Chronosense\" watch stands as a testament to the beauty of simplicity. Its clean lines and uncluttered dial create a minimalist design that exudes understated sophistication. Whether you're attending a formal event or enjoying a casual outing, the \"Chronosense\" effortlessly complements your style, enhancing your overall appearance with its refined charm.", config: .init(color : .hex("2F3035"))),
+        .image(image: .url(url: "https://www.nendo.jp/wp/wp-content/uploads/2019/05/buckle10_akihiro_yoshida.jpg"),config: .init(isHorizontalPadding : false)),
+        .headline(value: "Uncompromising Craftsmanship:",config: .init(color: .color(.red))),
+        .caption(value: "Crafted with utmost precision, the \"Chronosense\" is a masterpiece of horological engineering. The watch case, meticulously fashioned from premium stainless steel or titanium, showcases the brand's commitment to durability and aesthetics. With a careful balance of robustness and elegance, this timepiece is built to withstand the test of time, both in terms of style and functionality.", config: .init(color : .hex("2F3035"))),
+        .image(image: .url(url: "https://www.nendo.jp/wp/wp-content/uploads/2019/05/buckle20_akihiro_yoshida.jpg"),config: .init(isHorizontalPadding : false)),
+        .headline(value: "Versatile Straps:",config: .init(color: .color(.red))),
+        .caption(value: "Recognizing the diversity of personal preferences, the \"Chronosense\" offers a range of strap options. Choose from genuine leather for a classic and sophisticated look, stainless steel for a contemporary touch, or opt for a comfortable and durable silicone strap for active lifestyles. These interchangeable straps allow you to adapt the watch to various occasions, ensuring its versatility and flexibility.", config: .init(color : .hex("2F3035"))),
+        .image(image: .url(url: "https://www.nendo.jp/wp/wp-content/uploads/2019/05/buckle22_akihiro_yoshida.jpg"),config: .init(isHorizontalPadding : false)),
+        .headline(value: "Precise Timekeeping:",config: .init(color: .color(.red))),
+        .caption(value: "At the heart of the \"Chronosense\" beats a highly accurate and reliable automatic movement, engineered with precision and expertise. This mechanism ensures that the watch maintains excellent timekeeping, allowing you to trust it implicitly, whether you're counting the minutes during a crucial business meeting or cherishing moments with loved ones.", config: .init(color : .hex("2F3035"))),
+        .headline(value: "The Perfect Companion:",config: .init(color: .color(.red))),
+        .caption(value: "The \"Chronosense\" transcends its utilitarian purpose and becomes an elegant companion, evoking emotions and making a lasting impression. Its timeless design philosophy aligns seamlessly with the philosophy of the \"TEN:TEN\" collection, emphasizing the significance of every moment and cherishing the art of horology.", config: .init(color : .hex("2F3035"))),
+        .headline(value: "Conclusion:",config: .init(fontWeight: .bold,color: .color(.red))),
+        .caption(value: "As we conclude our journey into the \"TEN:TEN\" watch collection, the \"Chronosense\" emerges as the embodiment of timeless elegance. Its minimalist design, premium materials, and meticulous craftsmanship converge to create a timepiece that transcends trends and becomes a cherished possession for watch connoisseurs.", config: .init(color : .hex("2F3035"))),
+        .image(image: .url(url: "https://www.nendo.jp/wp/wp-content/uploads/2019/05/buckle11_akihiro_yoshida.jpg"),config: .init(isHorizontalPadding : false)),
+        .caption(value: "Whether you appreciate the art of horology or seek a watch that effortlessly complements your style, the \"Chronosense\" is a symbol of impeccable taste. It exemplifies the unwavering commitment to quality and sophistication that the \"TEN:TEN\" collection represents.", config: .init(color : .hex("2F3035"))),
+        
+        .caption(value: "Indulge in the \"Chronosense\" and experience the epitome of timeless elegance on your wrist—a watch that stands as a testament to the enduring allure of exceptional design and craftsmanship.", config: .init(color : .hex("2F3035"))),
+        .link(text: "Reference", url: "https://www.nendo.jp/en/works/buckle/"),
+        .linkPreview(type: .small, url: "https://www.nendo.jp/en/works/buckle/"),
+    ])
     
     //porche 911 turbo 🥰
-    var porcheBlog : BlogData = BlogData(coverImage: .url(url: "https://i.pinimg.com/564x/f2/69/74/f26974c63e5be41d3dcbd21540fd1e40.jpg"), content: [
+    var porcheBlog : BlogData =
+    BlogData(coverImage: .url(url: "https://i.pinimg.com/564x/f2/69/74/f26974c63e5be41d3dcbd21540fd1e40.jpg"), content: [
         .title(value: "Unleash the Power of Performance:"),
         .subheadline(value: "Introducing the Porsche 911 Turbo",config: .init(color: .color(.red))),
         .caption(value: "Are you ready to experience the thrill of unparalleled performance and precision engineering? Get behind the wheel of the iconic Porsche 911 Turbo, a sports car that epitomizes the perfect balance between power and elegance. In this blog, we dive into the heart of the Porsche 911 Turbo and explore its remarkable features that make it a true driving sensation."),
@@ -112,7 +140,7 @@ class BlogExampleListVC: UIViewController,ObservableObject {
         .image(image: .url(url: "https://www.pngmart.com/files/22/Porsche-911-PNG-HD.png")),
         .spacer(height: 10),
         .bullet(value: "The Porsche 911 Turbo is renowned for its breathtaking speed. Equipped with a turbocharged engine, this powerhouse delivers jaw-dropping acceleration that propels you from 0 to 60 mph in mere seconds. With horsepower figures that range from impressive to mind-blowing, the 911 Turbo offers an exhilarating driving experience that leaves a lasting impression.",config: .init(bulletType: .Text(value: "Blistering Speed:",color: .color(.red)))),
-     
+
         .image(image: .url(url: "https://cdn.shopify.com/s/files/1/0075/5046/8132/files/image-4.png?v=1642267899")),
         .bullet(value: "The sleek and aerodynamic design of the Porsche 911 Turbo is a testament to its performance-oriented nature. Every curve and contour is meticulously crafted to minimize drag and optimize downforce, ensuring superior handling and stability at high speeds. From the distinctive sloping roofline to the iconic rear spoiler, the 911 Turbo exudes a dynamic presence that commands attention on the road.",config: .init(bulletType: .Text(value: "Aerodynamic Design:",color: .color(.red)))),
         .image(image: .url(url: "https://drives.today/upload/000/u41/e/8/porsche-911-993-multi-link-rear-suspension-picture-normal.jpg")),
@@ -167,7 +195,7 @@ class BlogExampleListVC: UIViewController,ObservableObject {
     func getDictOfPorcheBlog() {
         let Dict = porcheBlog.getDict()
         
-//        let blogData = BlogData(Dict)
+//      let blogData = BlogData(Dict)
         FirebaseManager.shared.uploadBlog(data: Dict)
     }
 }

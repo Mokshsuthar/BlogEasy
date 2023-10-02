@@ -25,11 +25,15 @@ public struct BlogView: View {
     // horizontal padding of text content
     var paddingHorizontal : CGFloat = 16
     
+    
     //spacing between lines in pragraph
     var textLineSpacing : CGFloat = 2
     
     //Accent Color
     var accentColor : Color = Color.accentColor
+    
+    //Cover Gradient Color
+    var showCoverGradient : Bool = true
     
     var coverScrollOpacity : CGFloat = 0.4
     
@@ -133,6 +137,7 @@ public struct BlogView: View {
                             if let url = URL(string: url){
                                 LinkPreview(url: url)
                                     .type(type)
+                                    .padding(.horizontal,paddingHorizontal)
                             } else {
                                 EmptyView()
                             }
@@ -143,7 +148,6 @@ public struct BlogView: View {
                     Spacer().bottomSafeArea(ifZero: 15)
                    
                 }
-                .padding(.horizontal,paddingHorizontal)
                 .getScrollPosition(key: "blogScroll", handler: self.scrollViewDidScroll(value:))
                 
                 
@@ -169,7 +173,7 @@ public struct BlogView: View {
             navigationView
             
         }
-        .background(backgroundColor)
+        .background(self.blogData.backgroudColor?.getColor() ?? backgroundColor)
        
         .ignoreSafeArea_C()
     }

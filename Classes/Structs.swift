@@ -12,12 +12,13 @@ public struct BlogData : Identifiable {
     public var id = UUID()
 //    var title : String
     var coverImage : imageProvider?
+    var backgroudColor : colorProvider?
     var content : [BlogCantent]
     
-    public init(coverImage : imageProvider?,content: [BlogCantentType]) {
+    public init(coverImage : imageProvider?,backgroudColor : colorProvider? = nil,content: [BlogCantentType]) {
         self.coverImage = coverImage
         self.content = content.asBlogContent()
-        
+        self.backgroudColor = backgroudColor
     }
     
     public init(_ dict : [String : Any]) {
@@ -46,6 +47,7 @@ public struct BlogData : Identifiable {
     }
 }
 
+
 public struct BlogCantent : Identifiable {
     public var id = UUID()
     var ContentType : BlogCantentType
@@ -54,6 +56,9 @@ public struct BlogCantent : Identifiable {
         self.ContentType = ContentType
     }
 }
+
+
+
 extension [BlogCantentType] {
     func asBlogContent() -> [BlogCantent] {
         return self.map({BlogCantent(ContentType: $0)})
@@ -76,8 +81,6 @@ public enum BlogCantentType {
     case spacer(height : CGFloat = 10)
     case linkPreview(type : LinkPreviewType = .auto, url : String)
 }
-
-
 
 extension BlogCantentType {
     func getDict() -> [String : Any] {
@@ -339,7 +342,7 @@ public struct SubheadlineTextConfig {
 //caption Config
 public struct captionTextConfig {
     var size : CGFloat = 16
-    var fontWeight : Font.Weight = .light
+    var fontWeight : Font.Weight = .regular
     var color : colorProvider =  .defaultColor()
     var UnderLine : Bool = false
     var smallCaps : Bool = false
@@ -350,7 +353,7 @@ public struct captionTextConfig {
         
     }
     
-    public init(size: CGFloat = 16, fontWeight: Font.Weight = .light, color: colorProvider = .defaultColor(), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 0.8, alignment: TextAlignment = .leading) {
+    public init(size: CGFloat = 16, fontWeight: Font.Weight = .regular, color: colorProvider = .defaultColor(), UnderLine: Bool = false, smallCaps: Bool = false, opacity: CGFloat = 0.8, alignment: TextAlignment = .leading) {
         self.size = size
         self.fontWeight = fontWeight
         self.color = color
@@ -484,13 +487,15 @@ public struct ImageConfig {
     var showShadow : Bool
     var aspectMode : ContentMode
     var backgroundColor : colorProvider
+    var isHorizontalPadding : Bool
     var source : imageSource?
     
-    public init(cornerRadius: CGFloat = 20, showShadow: Bool = false, aspectMode: ContentMode = .fit, backgroundColor: colorProvider = .color(.clear),source : imageSource? = nil) {
+    public init(cornerRadius: CGFloat = 20, showShadow: Bool = false, aspectMode: ContentMode = .fit, backgroundColor: colorProvider = .color(.clear),isHorizontalPadding : Bool = true,source : imageSource? = nil) {
         self.cornerRadius = cornerRadius
         self.showShadow = showShadow
         self.aspectMode = aspectMode
         self.backgroundColor = backgroundColor
+        self.isHorizontalPadding = isHorizontalPadding
         self.source = source
     }
     
@@ -500,13 +505,16 @@ public struct ImageConfig {
         self.aspectMode = dict.getAspectMode("aspectMode",.fit)
         self.backgroundColor = dict.getColor("backgroundColor",.color(.clear))
         self.source = dict.getImageSource("source")
+        self.isHorizontalPadding = dict.getBool("isHorizontalPadding")
     }
+    
     
     func dict() -> [String : Any] {
         var config : [String : Any] = [:]
         config["cornerRadius"] = cornerRadius
         config["showShadow"] = showShadow
         config["aspectMode"] = aspectMode.rawValue()
+        config["isHorizontalPadding"] = isHorizontalPadding
         config["backgroundColor"] = backgroundColor.ColorDict()
         if let source {
             config["source"] = source.getDict()

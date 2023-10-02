@@ -78,6 +78,35 @@ struct BlogExampleListView: View {
                         self.model.getDictOfPorcheBlog()
                     }
                     
+                    HStack(spacing : 0){
+                        KFImage(URL(string: "https://i.pinimg.com/564x/6e/1f/49/6e1f4950b22030d079f78227bd20a58b.jpg"))
+                            .resizable().aspectRatio(contentMode: .fill)
+                            .squareFrame(size: 90)
+                            .clipped()
+                        
+                        VStack{
+                            Text("Unleash the Power of Performance")
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                                .fullWidth(alignment: .leading)
+                            
+                            Text("Introducing the Porsche 911 Turbo")
+                                .font(.caption)
+                                .foregroundColor(Color.white)
+                                .fullWidth(alignment: .leading)
+                        }
+                        .padding(10)
+                        .fullFrame(alignment: .topLeading)
+                        .background(BlurView(style: .systemUltraThinMaterialLight))
+                        
+                    }
+                    .fullWidth(height: 90)
+                    .cornerRadius(20)
+                    .onTapGesture {
+//                        self.model.OpenBlog = model.porcheBlog
+                        self.model.getDictOfPorcheBlog()
+                    }
+                    
                     
                     Button {
                         self.model.openOnlineBlog()
